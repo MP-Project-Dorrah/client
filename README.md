@@ -52,12 +52,19 @@ As a user, I can reset my password by sending a code to my email
 <a name="wireframe"></a>
 
 ## Wireframes
-
+![Untitled Diagram drawio-13](https://user-images.githubusercontent.com/92247950/146522116-f57587f2-db24-46b7-a739-fa5f38c5f0c4.png)
+---------
+![Untitled Diagram drawio-14](https://user-images.githubusercontent.com/92247950/146522164-7b67576e-cf5c-4a87-ac9b-4c56fba73a55.png)
+---------
+![Untitled Diagram drawio-15](https://user-images.githubusercontent.com/92247950/146522179-adabc00b-de98-4d27-8004-9bbf470c0d6b.png)
+---------
+![Untitled Diagram drawio-21](https://user-images.githubusercontent.com/92247950/146522198-99ba3c7d-571a-4680-8b37-f43719a5326f.png)
 
 
 <a name="frontUml"></a>
 
 ## UML diagrm
+![Untitled Diagram drawio-22](https://user-images.githubusercontent.com/92247950/146522087-e67475d6-79ea-466d-b381-7e7f667fe023.png)
 
 
 
