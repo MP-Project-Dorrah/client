@@ -70,7 +70,7 @@ pointment  <br/> As a user, I can cancel the appointment if it doesn't contain p
 <a name="frontUml"></a>
 
 ## UML diagrm
-![Untitled Diagram drawio-25](https://user-images.githubusercontent.com/92247950/146675571-81a059cb-2daf-4d89-b006-dfbbaca5e515.png)
+![Untitled Diagram drawio-26](https://user-images.githubusercontent.com/92247950/146676084-2e6dace0-3dfd-4d47-bc2f-a895f05ff18e.png)
 
 
 <a name="comp"></a>
@@ -93,6 +93,21 @@ pointment  <br/> As a user, I can cancel the appointment if it doesn't contain p
 <a name="frontRoutes"></a>
 
 ## Routes
+Component     |     Path               |  Permissions
+------------- | ---------------        | ------------
+Login         | `/`                    | Guest
+SignUp        | `/signup`              | Guest
+Forget        | `/forgetPassword`      | Guest
+Reset         | `/resetPassword`       | Guest
+Home          | `/home`                | Guest 
+oneProperty   | `/home/oneProperty/:id`| Guest 
+Profile       | `/profile`             | Guest
+oneProvider   | `/profile/:id`         | Guest 
+Providers     | `/usres`               | Guest
+Apponitment   | `/Apponitment`         | User
+Chat          | `/profile/:room`       | User
+Interset list | `/profile/:room`       | User
+
 
 
 <a name="installation"></a>
@@ -105,10 +120,17 @@ pointment  <br/> As a user, I can cancel the appointment if it doesn't contain p
 <a name="dep"></a>
 
 ## dependencies
+- axios
+- firebase
+- react-dotenv
+- react-redux
+- socket.io-client
+- react-google-login
+- react-icons
 
-
+<a name="slid"></a>
 ## Slides
-
+[ Take a look. ](#slid)
 
 
 
