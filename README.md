@@ -8,9 +8,10 @@
 1. [ User Stories. ](#userStor)
 2. [ Wireframes. ](#wireframe)
 3. [ UML diagrm.](#frontUml)
-4. [ Routes. ](#frontRoutes)
-5. [ Installation. ](#installation)
-6. [ Dependencies. ](#dep)
+4. [ Components.](#comp)
+6. [ Routes. ](#frontRoutes)
+7. [ Installation. ](#installation)
+8. [ Dependencies. ](#dep)
 
 
 
@@ -46,7 +47,8 @@ As a user, I can reset my password by sending a code to my email
 
 •	Edit appointment  <br/> As a seller user, I can edit on the appointment if it's done or not 
 
-•	cancle appointment  <br/> As a user, I can cancel the appointment if it doesn't contain payment (Architect)
+•	cancle ap
+pointment  <br/> As a user, I can cancel the appointment if it doesn't contain payment (Architect)
 
 •	Add to interest list  <br/> As a user, I can add or remove the property to my interested in list
 
@@ -68,9 +70,24 @@ As a user, I can reset my password by sending a code to my email
 <a name="frontUml"></a>
 
 ## UML diagrm
-![Untitled Diagram drawio-22](https://user-images.githubusercontent.com/92247950/146522087-e67475d6-79ea-466d-b381-7e7f667fe023.png)
+![Untitled Diagram drawio-25](https://user-images.githubusercontent.com/92247950/146675571-81a059cb-2daf-4d89-b006-dfbbaca5e515.png)
 
 
+<a name="comp"></a>
+
+## Components
+- Home
+- oneProperty
+- Apponitment
+- Providers
+- oneProvider
+- Profile
+- Chat
+- Interset list
+- Log in 
+- Sign up 
+- Forget password
+- Reset password
 
 
 <a name="frontRoutes"></a>
@@ -88,4 +105,10 @@ As a user, I can reset my password by sending a code to my email
 <a name="dep"></a>
 
 ## dependencies
+
+
+## Slides
+
+
+
 
