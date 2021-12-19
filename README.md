@@ -9,6 +9,10 @@
 2. [ Wireframes. ](#wireframe)
 3. [ UML diagrm.](#frontUml)
 4. [ Routes. ](#frontRoutes)
+5. [ Installation. ](#installation)
+6. [ Dependencies. ](#dep)
+
+
 
 <a name="userStor"></a>
 ## User Stories
@@ -100,4 +104,26 @@ POST          | user          |`/room`                                 |{ user, 
 POST          | user          |`/message`                              | {content , user , room}
 GET           | user          |`/message/:id`                          |
 
+
+<a name="installation"></a>
+
+## Installation
+- Clone this folder locally
+- Install all packages using `npm install` command
+- Run `npm run dev` in your command line
+
+<a name="dep"></a>
+
+## dependencies
+- Express
+- nodemon
+- dotenv
+- mongoose
+- bcrypt
+- jsonwebtoken
+- cors
+- google-auth-library
+- nodemailer
+- socket.io
+- validator
 
