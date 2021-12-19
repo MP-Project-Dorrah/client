@@ -71,7 +71,7 @@ pointment  <br/> As a user, I can cancel the appointment if it doesn't contain p
 <a name="frontUml"></a>
 
 ## UML diagrm
-![Untitled Diagram drawio-26](https://user-images.githubusercontent.com/92247950/146676084-2e6dace0-3dfd-4d47-bc2f-a895f05ff18e.png)
+![Untitled Diagram drawio-27](https://user-images.githubusercontent.com/92247950/146678397-e7f4a24e-40e1-484d-b504-239132bc8d6e.png)
 
 
 <a name="comp"></a>
@@ -134,8 +134,10 @@ Interset list | `/profile/:room`       | User
 
 ## for more information
 - [ Slides. ](#slid) 
-- [ Deployed App Link. ](#slid)
+- [ Frontend Deployed Link. ](#slid)
+- [ Backend Deployed Link. ](#slid)
 - [ Backend Repo ](https://github.com/MP-Project-Dorrah/server)
+- [ Trello ](https://trello.com/b/bmMaTJII/mp-project-dorrah)
 
 
 
