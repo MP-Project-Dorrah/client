@@ -72,7 +72,32 @@ As a user, I can reset my password by sending a code to my email
 <a name="frontRoutes"></a>
 
 ## Routes
-
-
+HTTP Method   | authorize     |    Path                                |  Request Body         
+------------- | -----------   | ---------------------------            |---------------------- 
+POST          | everyone      |`/user/create`                          |{email, username, name, password, phoneNumber, img, nationalId, role}
+POST          | everyone      |`/user/log`                             |{email or username, password}     
+GET           | everyone      |`/user/`                                |                       
+GET           | everyone      |`/user/confirmation/:email/:token`      |                       
+PUT           | everyone      |`/user/forgetPassword`                  |{email}     
+PUT           | everyone      |`/user/resetPassword`                   |{resetLink, newPassword}  
+GET           | everyone      |`/user/:_id"`                           |                       
+POST          | everyone      |`/user/googlelogin`                     |{idToken} 
+DELETE        | user          |`/user/`                                |
+POST          | user          |`/user/newRate`                         |{user , rate} 
+PUT           | user          |`/propety/`                             |{by, onPost}
+GET           | user          |`/propety/:onPropety`                   |
+POST          | user          |`/Property/create`                      |{title, by, onPost}
+DELETE        | user          |`/Property/delete/:_id`                 |
+GET           | user          |`/posts/userProperty/:postedBy`         |
+POST          | user          |`/interested`                           |{id , userId}
+GET           | user          |`/interested/:_id`                      |
+DELETE        | user          |`/SUBSCRIBE/:_id`                       |
+POST          | user          |`/SUBSCRIBE/update`                     |{userId}
+POST          | user          |`/appointment`                          |{onProperty ، client ، serviceProvider ، type }
+DELETE        | user          |`/appointment/:_id`                     |
+GET           | user          |`/appointment/:id`                      |
+POST          | user          |`/room`                                 |{ user, sendToUser }
+POST          | user          |`/message`                              | {content , user , room}
+GET           | user          |`/message/:id`                          |
 
 
