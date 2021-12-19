@@ -12,6 +12,7 @@
 6. [ Routes. ](#frontRoutes)
 7. [ Installation. ](#installation)
 8. [ Dependencies. ](#dep)
+9. [ Additional information. ](#slid)
 
 
 
@@ -129,8 +130,14 @@ Interset list | `/profile/:room`       | User
 - react-icons
 
 <a name="slid"></a>
-## Slides
-[ Take a look. ](#slid)
+
+
+## for more information
+- [ Slides. ](#slid) 
+- [ Deployed App Link. ](#slid)
+- [ Backend Repo ](https://github.com/MP-Project-Dorrah/server)
+
+
 
 
 
