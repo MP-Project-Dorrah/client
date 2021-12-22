@@ -5,6 +5,8 @@ import "./style.css";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { logIn } from "../../reducers/login";
 import { useDispatch } from "react-redux";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -14,6 +16,11 @@ const Login = () => {
   const [message, setMessage] = useState("");
 
   const getUser = async () => {
+    setMessage(
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    ); //Progress indicators
     const users = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/user/log`,
       { input: email, password }
