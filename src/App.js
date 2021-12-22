@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Signup from "./components/signup/signup";
 import Login from "./components/logIn/login";
 import Forget from "./components/forget/forget";
+import Reset from "./components/resetpass/reset";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Route exact path="/log" element={<Signup />} />
         <Route exact path="/logIn" element={<Login />} />
         <Route exact path="/forgetPassword" element={<Forget />} />
+        <Route exact path="/resetPassword" element={<Reset />} />
+
         {/* <Route path="*" element={<Notfound />} /> */}
       </Routes>
     </div>
