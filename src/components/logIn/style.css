@@ -1,0 +1,62 @@
+.describeItem {
+  font-family: "Dosis", sans-serif;
+  font-size: 60px;
+  align-items: center;
+  text-align: center;
+}
+.Logg {
+  display: block;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.describeItem input {
+  border-style: none;
+  padding: 5px;
+  font-size: 30px;
+  border-radius: 3px;
+  border-bottom: 0.5px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.LogBtn {
+  margin-top: 1%;
+  color: rgb(0, 0, 0);
+  padding: 6px 20px;
+  border-radius: 7px;
+  border: none;
+  transition: 0.5s ease;
+  background: rgba(255, 255, 255, 0);
+  list-style: none;
+  text-align: center;
+  font-weight: bold;
+}
+
+.LogBtn:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+
+.goIcon {
+  color: rgba(192, 145, 102, 0.794);
+  font-size: 45px;
+}
+.mesageL {
+  font-size: 25px;
+}
+
+.forgetPass {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.forgetPass:hover {
+  cursor: pointer;
+}
+.already {
+  font-size: 30px;
+}
+
+.linkk {
+  color: rgb(0, 0, 0);
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -223,6 +223,13 @@ const Signup = () => {
           >
             <BsFillArrowRightCircleFill />
           </button>
+
+          <div>
+            already have an account?
+            <Link className="linkk" to="/logIn">
+              log in
+            </Link>
+          </div>
         </>
       )}
       {message}
