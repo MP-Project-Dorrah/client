@@ -40,6 +40,11 @@ const Header = () => {
             </li>
             <li className="lie">
               <Link className="link" to="/">
+                Agents
+              </Link>
+            </li>
+            <li className="lie">
+              <Link className="link" to="/log">
                 log in
               </Link>
             </li>
@@ -54,7 +59,7 @@ const Header = () => {
             </li>
             <li className="lie">
               <Link className="link" to="/">
-                Real-estate agents
+                Agents
               </Link>
             </li>
             <li className="lie">
