@@ -10,6 +10,7 @@ function valuetext(value) {
 }
 
 function Home() {
+  let navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [value, setValue] = React.useState([0, 500000]);
   const [max, setMax] = useState(500000);
@@ -43,6 +44,12 @@ function Home() {
     // getAllProperties();
   };
 
+  const goInside = (propertyId) => {
+    console.log(propertyId);
+    // navigate(`property/${propertyId}`);
+  };
+  
+
   return (
     <div>
       <input
@@ -67,7 +74,7 @@ function Home() {
             return (
               <>
                 <div className="property">
-                  <h3>{ele.name}</h3>
+                  <h3 onClick={() => goInside(ele._id)}>{ele.name}</h3>
                   <h6>{ele.city}</h6>
                 </div>
               </>

@@ -23,6 +23,11 @@ function InterestList() {
     console.log(Properties);
   };
 
+  const goInside = (id) => {
+    console.log(id);
+    // navigate(`/profile/${id}`);
+  };
+
   return (
     <div>
       {properties.length && (
@@ -31,7 +36,13 @@ function InterestList() {
             return (
               <>
                 <div className="property">
-                  <h3>{ele.onProperty.name}</h3>
+                  <h3
+                    onClick={() => {
+                      goInside(ele._id);
+                    }}
+                  >
+                    {ele.onProperty.name}
+                  </h3>
                 </div>
               </>
             );

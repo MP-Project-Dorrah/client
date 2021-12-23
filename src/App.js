@@ -8,6 +8,7 @@ import Reset from "./components/resetpass/reset";
 import Home from "./components/home/home";
 import Agents from "./components/agents/agents";
 import InterestList from "./components/interestList/interest";
+import Profile from "./components/profile/profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/resetPassword" element={<Reset />} />
         <Route exact path="/agents" element={<Agents />} />
         <Route exact path="/interestList" element={<InterestList />} />
+        <Route exact path="/profile" element={<Profile />} />
 
         {/* <Route path="*" element={<Notfound />} /> */}
       </Routes>

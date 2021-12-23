@@ -67,8 +67,13 @@ const Header = () => {
                 interst list
               </Link>
             </li>
+            <li className="lie"> 
+              <Link className="link" to="/myAppointments">
+              Appointments
+              </Link>
+            </li>
             <li className="lie">
-              <Link className="link" to="/">
+              <Link className="link" to="/profile">
                 Profile
               </Link>
             </li>

@@ -20,7 +20,8 @@ const Agents = () => {
   };
 
   const goInside = (id) => {
-    navigate(`/profile/${id}`);
+    console.log(id);
+    // navigate(`/profile/${id}`);
   };
 
   return (
@@ -51,7 +52,7 @@ const Agents = () => {
           );
         })}
 
-      {!allUsers.length && <h2>there is no user</h2>}
+      {!allUsers.length && <h2>There are no agents available at the moment </h2>}
     </div>
   );
 };
