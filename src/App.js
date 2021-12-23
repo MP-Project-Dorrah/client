@@ -6,8 +6,7 @@ import Login from "./components/logIn/login";
 import Forget from "./components/forget/forget";
 import Reset from "./components/resetpass/reset";
 import Home from "./components/home/home";
-// import Agents from "./components/agents/agents";
-
+import Agents from "./components/agents/agents";
 
 function App() {
   return (
@@ -19,8 +18,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/forgetPassword" element={<Forget />} />
         <Route exact path="/resetPassword" element={<Reset />} />
-        {/* <Route exact path="/agents" element={<Agents />} /> */}
-
+        <Route exact path="/agents" element={<Agents />} />
 
         {/* <Route path="*" element={<Notfound />} /> */}
       </Routes>
