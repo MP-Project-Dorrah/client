@@ -34,17 +34,13 @@ function Home() {
     setValue(newValue);
     setMax(newValue[1]);
     setMin(newValue[0]);
-    // getAllProperties();
+    getAllProperties();
   };
 
   const setSearchFun = (value) => {
     console.log(value);
-    if (value.length === 0) {
-      setSearch("");
-    } else {
-      setSearch(value);
-    }
-    getAllProperties();
+    setSearch(value);
+    // getAllProperties();
   };
 
   return (

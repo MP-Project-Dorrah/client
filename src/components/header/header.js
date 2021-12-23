@@ -58,12 +58,12 @@ const Header = () => {
               </Link>
             </li>
             <li className="lie">
-              <Link className="link" to="/">
+              <Link className="link" to="/agents">
                 Agents
               </Link>
             </li>
             <li className="lie">
-              <Link className="link" to="/">
+              <Link className="link" to="/interestList">
                 interst list
               </Link>
             </li>
