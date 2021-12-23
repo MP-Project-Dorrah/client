@@ -38,11 +38,11 @@ const Header = () => {
                 Home
               </Link>
             </li>
-            <li className="lie">
-              <Link className="link" to="/">
+            {/* <li className="lie">
+              <Link className="link" to="/agents">
                 Agents
               </Link>
-            </li>
+            </li> */}
             <li className="lie">
               <Link className="link" to="/logIn">
                 log in
