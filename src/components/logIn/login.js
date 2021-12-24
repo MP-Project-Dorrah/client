@@ -33,6 +33,7 @@ const Login = () => {
         token: users.data.token,
         userID: users.data.result._id,
         username: users.data.result.username,
+        isSub : users.data.result.isSub
       };
       dispatchEvent(logIn(data));
       navigate(`/`); // profile
