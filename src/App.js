@@ -9,6 +9,7 @@ import Home from "./components/home/home";
 import Agents from "./components/agents/agents";
 import InterestList from "./components/interestList/interest";
 import Profile from "./components/profile/profile";
+import Property from "./components/property/property";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route exact path="/agents" element={<Agents />} />
         <Route exact path="/interestList" element={<InterestList />} />
         <Route exact path="/profile" element={<Profile />} />
-
+        <Route exact path="/property/:id" element={<Property />} />
+        
         {/* <Route path="*" element={<Notfound />} /> */}
       </Routes>
     </div>

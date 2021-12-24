@@ -46,9 +46,8 @@ function Home() {
 
   const goInside = (propertyId) => {
     console.log(propertyId);
-    // navigate(`property/${propertyId}`);
+    navigate(`property/${propertyId}`);
   };
-  
 
   return (
     <div>
