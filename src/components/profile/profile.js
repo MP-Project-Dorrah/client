@@ -36,7 +36,6 @@ const Profile = () => {
       // }
     );
     setuser(user.data);
-    console.log(user.data);
 
     const subscribe = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/subscribe/${state.signIn.userID}`
@@ -47,7 +46,6 @@ const Profile = () => {
     const properties = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/property/userProperty/${state.signIn.userID}`
     );
-    console.log(properties, "propperttt");
     setProperties(properties.data);
   };
   // let now = new Date();
@@ -70,7 +68,6 @@ const Profile = () => {
     <>
       {user.length && (
         <>
-          {console.log(user)}
           <img src={user[0].img} />
           <h3>{user[0].name}</h3>
           <h5>@{user[0].username}</h5>
@@ -97,7 +94,6 @@ const Profile = () => {
               <div> my property </div>
               {properties.length &&
                 properties.map((ele) => {
-                  console.log(ele, "eleee");
                   return (
                     <>
                       <h3

@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
 import { FaBath } from "react-icons/fa";
 import { IoIosBed } from "react-icons/io";
+import Scheduled from "./../scheduled/scheduled";
+import Map from "../map/map";
 
 const Property = () => {
   let navigate = useNavigate();
@@ -65,7 +67,7 @@ const Property = () => {
   };
 
   const deleteProperty = async (propertyId) => {
-    await axios.put(
+    const result = await axios.put(
       `${process.env.REACT_APP_BASE_URL}/property/delete`,
       { _id: propertyId },
       {
@@ -74,7 +76,9 @@ const Property = () => {
         },
       }
     );
-    navigate(-1);
+    if (result) {
+      navigate(-1);
+    }
   };
   // اذا كان السيلرر هو صاحب البروبرتي مايطلع له حجز موعد
   //
@@ -101,15 +105,15 @@ const Property = () => {
                 {property[0].propertyHighlights.room}
                 <IoIosBed />
               </div>
-              {/* <map component /> */}
+              <Map />
               <div>
                 Description
                 <h6> {property[0].describe} </h6>
               </div>
               {/* the seller cant take an appointment if its the owner  */}
-              {/* {state.signIn.userID !== property[0].postedBy._id && (
-                <appointment component />
-              )} */}
+              {state.signIn.userID !== property[0].postedBy._id && (
+                <Scheduled city={property[0].city} />
+              )}
             </h4>
             <div className="imgContener">
               <img className="imgg" src={property[0].postedBy.img} alt="img" />
