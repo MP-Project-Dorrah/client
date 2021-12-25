@@ -13,6 +13,10 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import IconButton from "@mui/material/IconButton";
 import { useSelector } from "react-redux";
 import UseStorage from "../../hocks/useStorage";
+import video from "./../../videos/video.mp4";
+import { grey } from "@mui/material/colors";
+
+const primary = grey[50];
 
 const style = {
   position: "absolute",
@@ -89,23 +93,44 @@ function Home() {
   };
 
   return (
-    <div>
-      <input
-        placeholder="searh"
-        onChange={(e) => setSearchFun(e.target.value)}
-      />
-      <Box sx={{ width: 300 }}>
-        <Slider
-          getAriaLabel={() => "Temperature range"}
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          min={100} /////
-          max={500000} ///////
-        />
-      </Box>
-
+    <div className="homeContener">
+      <video
+        className="videoInsideDec"
+        autoPlay={true}
+        loop={true}
+        muted={true}
+      >
+        <source src={video} type="video/mp4" />
+      </video>
+      <div className="bggg"></div>
+      <div className="homeHeaderText">Discover a place you'll love to live</div>
+      <div className="sortProperty">
+        <div>
+          <input
+            className="searchInput"
+            placeholder="searh"
+            onChange={(e) => setSearchFun(e.target.value)}
+          />
+        </div>
+        <div>
+          <Box sx={{ width: 300 }}>
+            <Slider
+              getAriaLabel={() => "Temperature range"}
+              value={value}
+              onChange={handleChange}
+              valueLabelDisplay="auto"
+              getAriaValueText={valuetext}
+              min={100} /////
+              max={500000} ///////
+              step={1000}
+              sx={{
+                color: "white",
+              }}
+              // color="secondary"
+            />
+          </Box>
+        </div>
+      </div>
       {state.signIn.role === "61c05b020cca090670f00821" &&
         state.signIn.isSub === true && (
           <>
@@ -243,16 +268,24 @@ function Home() {
 
       {properties.length && (
         <>
-          {properties.map((ele) => {
-            return (
-              <>
-                <div className="property">
-                  <h3 onClick={() => goInside(ele._id)}>{ele.name}</h3>
-                  <h6>{ele.city}</h6>
-                </div>
-              </>
-            );
-          })}
+          <div className="propertyy">
+            {properties.map((ele) => {
+              return (
+                <>
+                  <div className="propertyImgContener">
+                    <img
+                      onClick={() => goInside(ele._id)}
+                      className="propertyImg"
+                      src={ele.imgArr[0]}
+                    />
+                  </div>
+                  <div></div>
+                  {/* <h3 onClick={() => goInside(ele._id)}>{ele.name}</h3>
+                  <h6>{ele.city}</h6> */}
+                </>
+              );
+            })}
+          </div>
         </>
       )}
     </div>
