@@ -63,7 +63,7 @@ function Scheduled(props) {
   };
 
   const sendMessage = async () => {
-    console.log("sennnd");
+    console.log("sennnnd");
   };
 
   return (
