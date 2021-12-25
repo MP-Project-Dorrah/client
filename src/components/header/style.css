@@ -3,11 +3,11 @@
   padding: 0;
 }
 .nav {
-  background-color: rgba(0, 0, 0, 0.924);
+  background-color: rgba(0, 0, 0, 0.329);
 }
 .lie {
   display: inline-block;
-  margin: 1% 4%;
+  margin: 1% 5.5%;
   color: white;
 }
 .lie:hover {
@@ -28,5 +28,5 @@
 }
 
 #logo {
-  margin-right: 50%;
+  margin-right: 46%;
 }

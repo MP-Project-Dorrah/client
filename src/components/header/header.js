@@ -31,7 +31,7 @@ const Header = () => {
         {state.signIn.token.length === 0 ? (
           <ul>
             <li className="lie" id="logo">
-              logo
+              PERFECTVIEW
             </li>
             <li className="lie">
               <Link className="link" to="/">
@@ -51,7 +51,7 @@ const Header = () => {
           </ul>
         ) : (
           <ul>
-            <li className="lie">logo</li>
+            <li className="lie"> PERFECTVIEW</li>
             <li className="lie">
               <Link className="link" to="/">
                 Home
@@ -67,11 +67,11 @@ const Header = () => {
                 interst list
               </Link>
             </li>
-            <li className="lie"> 
+            {/* <li className="lie"> 
               <Link className="link" to="/myAppointments">
               Appointments
               </Link>
-            </li>
+            </li> */}
             <li className="lie">
               <Link className="link" to="/profile">
                 Profile

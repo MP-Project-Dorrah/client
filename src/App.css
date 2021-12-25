@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+*{
+  font-family: 'Julius Sans One', sans-serif;
+}

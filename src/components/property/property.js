@@ -14,7 +14,6 @@ const Property = () => {
   const id = useParams().id;
   const [property, setProperty] = useState([]);
   const [isLiked, setIsLiked] = useState(`${(<IoHeartSharp />)}`);
-
   const state = useSelector((state) => {
     return state;
   });
@@ -29,7 +28,7 @@ const Property = () => {
       `${process.env.REACT_APP_BASE_URL}/property/oneProperty/${id}`
     );
     setProperty(property.data);
-    console.log(property.data);
+    console.log(property.data[0].postedBy.Availability);
 
     const result = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/interestList/check/${id}`,
@@ -111,9 +110,10 @@ const Property = () => {
                 <h6> {property[0].describe} </h6>
               </div>
               {/* the seller cant take an appointment if its the owner  */}
-              {state.signIn.userID !== property[0].postedBy._id && (
-                <Scheduled city={property[0].city} />
-              )}
+              {state.signIn.userID !== property[0].postedBy._id &&
+                property[0].postedBy.Availability && (
+                  <Scheduled city={property[0].city} />
+                )}
             </h4>
             <div className="imgContener">
               <img className="imgg" src={property[0].postedBy.img} alt="img" />

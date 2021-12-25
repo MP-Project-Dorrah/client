@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./../payment";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
+import Switch from "@mui/material/Switch";
 
 const PUBLIC_KEY =
   "pk_test_51K7lpGEhqG80ZdS5vrY9JFVX0W1osFI2kKVDHkuPAmCI0bazpn9TWU7Svfdo6nSWy8Jm1a2N02JrsI0KgrzMUeHY001OBLvj1k";
@@ -20,7 +21,10 @@ const Profile = () => {
   const [user, setuser] = useState([]);
   const [subscribe, setSubscribe] = useState([]);
   const [properties, setProperties] = useState([]);
+  const [isSub, setIsSub] = useState(false);
+  const [message, setMessage] = useState("");
 
+  
   useEffect(() => {
     getUser();
     // eslint-disable-next-line
@@ -36,6 +40,14 @@ const Profile = () => {
       // }
     );
     setuser(user.data);
+    if (user.data[0].Availability){
+      setMessage("Yes")
+    }
+    else{
+      setMessage("No")
+    }
+    console.log(user.data[0].Availability);
+    setIsSub(user.data[0].isSub);
 
     const subscribe = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/subscribe/${state.signIn.userID}`
@@ -106,6 +118,13 @@ const Profile = () => {
                     </>
                   );
                 })}
+            </>
+          )}
+          {(state.signIn.role === "61c05b020cca090670f00821" ||
+            state.signIn.role === "61c05b880cca090670f00825") && (
+            <>are you available ?
+            {message}
+            
             </>
           )}
         </>

@@ -2,8 +2,19 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 function Scheduled(props) {
+  const [time, setTime] = React.useState("");
+
+  const handleChangeTime = (event) => {
+    setTime(event.target.value);
+  };
+
   let day1 = new Date();
   day1.setDate(day1.getDate() + 1);
   let day2 = new Date();
@@ -18,6 +29,8 @@ function Scheduled(props) {
   const [message, setMessage] = useState("yes");
   const [agents, setAgents] = useState([]);
 
+  const [agent, setAgent] = React.useState("");
+
   useEffect(() => {
     getAgents();
     // eslint-disable-next-line
@@ -28,7 +41,9 @@ function Scheduled(props) {
       `${process.env.REACT_APP_BASE_URL}/user/allRealestateAgents/${props.city}`
     );
     setAgents(agents.data);
-    console.log(agents.data, "dstaaaa");
+  };
+  const handleChangeAgent = (event, newAlignment) => {
+    setAgent(newAlignment);
   };
 
   const handleChange = (event, newAlignment) => {
@@ -47,9 +62,13 @@ function Scheduled(props) {
     }
   };
 
+  const sendMessage = async () => {
+    console.log("sennnd");
+  };
+
   return (
     <div>
-      <h3> Schedule A Tour </h3>
+      <h3> Schedule A Tour ? </h3>
       <p> Tour Type</p>
       <ToggleButtonGroup
         color="primary"
@@ -86,12 +105,43 @@ function Scheduled(props) {
           </ToggleButton>
         </ToggleButtonGroup>
         do you want an agent ? <span onClick={handleClick}> {message} </span>
-        {message === "no" &&
-          agents &&
-          agents.map((ele) => {
-            return ele.name;
-          })}
+        {message === "no" && agents && (
+          <>
+            <ToggleButtonGroup
+              color="primary"
+              value={agent}
+              exclusive
+              onChange={handleChangeAgent}
+            >
+              {agents.map((ele) => {
+                return <ToggleButton value={ele.name}>{ele.name}</ToggleButton>;
+              })}
+            </ToggleButtonGroup>
+          </>
+        )}
       </div>
+
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Choose a time</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={time}
+            label="Age"
+            onChange={handleChangeTime}
+          >
+            <MenuItem value={8}>8AM</MenuItem>
+            <MenuItem value={9}>9AM</MenuItem>
+            <MenuItem value={10}>10AM</MenuItem>
+            <MenuItem value={11}>11AM</MenuItem>
+            <MenuItem value={12}>12PM</MenuItem>
+            <MenuItem value={1}>1PM</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+
+      <button onClick={sendMessage}> Schedule a Tour </button>
     </div>
   );
 }
