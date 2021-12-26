@@ -31,6 +31,7 @@ const UseStorage = (props) => {
         name: props.name,
         price: props.price,
         city: props.city,
+        location : props.location,
         propertyHighlights: { room: props.rooms, bathroom: props.bathrooms },
       },
       {
@@ -45,14 +46,14 @@ const UseStorage = (props) => {
 
   return (
     <>
-      {/* {url && url.length === props.imgP.length && (
+      {url && url.length === props.imgP.length && (
         <>
           {url.map((ele) => {
-            console.log(ele, "url ele");
-            return <img className="downloadedImg" src={ele} />;
+            // console.log(ele, "url ele");
+            return <img className="downloadedImg" src={ele} alt="img" />;
           })}
         </>
-      )} */}
+      )}
       {url.length === props.imgP.length ? (
         <h1>
           <button

@@ -7,9 +7,23 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useSelector } from "react-redux";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Scheduled(props) {
   const [time, setTime] = React.useState("");
+  const [alignment, setAlignment] = React.useState("In-Person");
+  const [day, setDay] = React.useState(1);
+  const [message, setMessage] = useState("yes");
+  const [agents, setAgents] = useState([]);
+  const [scheduleBtn, setScheduleBtn] = useState("Schedule a Tour");
+  const [progress, setProgress] = useState("");
+  const [agent, setAgent] = React.useState("");
+
+  const state = useSelector((state) => {
+    return state;
+  });
 
   const handleChangeTime = (event) => {
     setTime(event.target.value);
@@ -24,13 +38,6 @@ function Scheduled(props) {
   let day4 = new Date();
   day4.setDate(day4.getDate() + 4);
 
-  const [alignment, setAlignment] = React.useState("In-Person");
-  const [day, setDay] = React.useState(1);
-  const [message, setMessage] = useState("yes");
-  const [agents, setAgents] = useState([]);
-
-  const [agent, setAgent] = React.useState("");
-
   useEffect(() => {
     getAgents();
     // eslint-disable-next-line
@@ -43,9 +50,10 @@ function Scheduled(props) {
     setAgents(agents.data);
   };
   const handleChangeAgent = (event, newAlignment) => {
+    console.log(newAlignment, "agentID");
+    console.log(props.sellerId, "sellerId");
     setAgent(newAlignment);
   };
-
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
@@ -53,7 +61,6 @@ function Scheduled(props) {
     console.log(newAlignment);
     setDay(newAlignment);
   };
-
   const handleClick = async () => {
     if (message === "yes") {
       setMessage("no");
@@ -61,9 +68,29 @@ function Scheduled(props) {
       setMessage("yes");
     }
   };
-
   const sendMessage = async () => {
+    setProgress(
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    );
     console.log("sennnnd");
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/appointment/send`,
+      {
+        sellerId: props.sellerId,
+        AgentId: agent,
+        buyerNumber: state.signIn.userNumber,
+        PropertyLocation: props.location,
+        type: alignment,
+        date: day + " " + time,
+      }
+    );
+    if (result.status === 200) {
+      setScheduleBtn("Message send");
+
+      setProgress("");
+    }
   };
 
   return (
@@ -87,19 +114,35 @@ function Scheduled(props) {
           exclusive
           onChange={handleChangeDay}
         >
-          <ToggleButton value={1}>
+          <ToggleButton
+            value={
+              day1.toString().slice(8, 10) + " " + day1.toString().slice(4, 7)
+            }
+          >
             <p>{day1.toString().slice(8, 10)} </p>
             <p>{day1.toString().slice(4, 7)} </p>
           </ToggleButton>
-          <ToggleButton value={2}>
+          <ToggleButton
+            value={
+              day2.toString().slice(8, 10) + " " + day2.toString().slice(4, 7)
+            }
+          >
             <p>{day2.toString().slice(8, 10)} </p>
             <p>{day2.toString().slice(4, 7)} </p>
           </ToggleButton>
-          <ToggleButton value={3}>
+          <ToggleButton
+            value={
+              day3.toString().slice(8, 10) + " " + day3.toString().slice(4, 7)
+            }
+          >
             <p>{day3.toString().slice(8, 10)} </p>
             <p>{day3.toString().slice(4, 7)} </p>
           </ToggleButton>
-          <ToggleButton value={4}>
+          <ToggleButton
+            value={
+              day4.toString().slice(8, 10) + " " + day4.toString().slice(4, 7)
+            }
+          >
             <p>{day4.toString().slice(8, 10)} </p>
             <p>{day4.toString().slice(4, 7)} </p>
           </ToggleButton>
@@ -114,7 +157,7 @@ function Scheduled(props) {
               onChange={handleChangeAgent}
             >
               {agents.map((ele) => {
-                return <ToggleButton value={ele.name}>{ele.name}</ToggleButton>;
+                return <ToggleButton value={ele._id}>{ele.name}</ToggleButton>;
               })}
             </ToggleButtonGroup>
           </>
@@ -131,17 +174,18 @@ function Scheduled(props) {
             label="Age"
             onChange={handleChangeTime}
           >
-            <MenuItem value={8}>8AM</MenuItem>
-            <MenuItem value={9}>9AM</MenuItem>
-            <MenuItem value={10}>10AM</MenuItem>
-            <MenuItem value={11}>11AM</MenuItem>
-            <MenuItem value={12}>12PM</MenuItem>
-            <MenuItem value={1}>1PM</MenuItem>
+            <MenuItem value="8AM">8AM</MenuItem>
+            <MenuItem value="9AM">9AM</MenuItem>
+            <MenuItem value="10AM">10AM</MenuItem>
+            <MenuItem value="11AM">11AM</MenuItem>
+            <MenuItem value="12PM">12PM</MenuItem>
+            <MenuItem value="1PM">1PM</MenuItem>
           </Select>
         </FormControl>
       </Box>
 
-      <button onClick={sendMessage}> Schedule a Tour </button>
+      <button onClick={sendMessage}> {scheduleBtn} </button>
+      {progress}
     </div>
   );
 }
