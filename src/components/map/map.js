@@ -1,40 +1,56 @@
 import React from "react";
+import GoogleMapReact from "google-map-react";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import "./style.css";
+import axios from "axios";
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 function Map(props) {
+  console.log(props.location);
+  // const getdata = async () => {
+  //   const result = await axios.get(
+  //     "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCSLYlHqKnSXjF7D_Q3oa6reLUVrCpIiOE"
+  //   );
+  //   console.log(result);
+  // };
+  // getdata();
+
+  const newMap = props.location.slice(
+    props.location.indexOf("@") + 1,
+    props.location.indexOf(",")
+  );
+  const newMap2 = props.location.slice(
+    props.location.indexOf(",") + 1,
+    props.location.indexOf("data")
+  );
+  const newMap22 = newMap2.slice(0, newMap2.length - 5);
+  console.log(newMap22);
+  const center = {
+    lat: Number(newMap),
+    lng: Number(newMap22),
+  };
+
+  const handleApiLoaded = (map, maps) => {
+    // use map and maps objects
+  };
   return (
-    <div>
-      Local Information
-      {console.log(props.location)}
-
-{/* 
-      <div className="map">
-    <h2 className="map-h2">Come Visit Us At Our Campus</h2>
-
-    <div className="google-map">
+    <div style={{ height: "40vh", width: "75%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: '' }}
-        defaultCenter={location}
-        defaultZoom={zoomLevel}
+        bootstrapURLKeys={{ key: "AIzaSyCSLYlHqKnSXjF7D_Q3oa6reLUVrCpIiOE" }}
+        defaultCenter={center}
+        defaultZoom={11}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        <LocationPin
-          lat={location.lat}
-          lng={location.lng}
-          text={location.address}
+        <AnyReactComponent
+          lat={center.lat}
+          lng={center.lng}
+          text={<FaMapMarkerAlt className="mapIcon" />}
         />
       </GoogleMapReact>
-    </div>
-  </div> */}
-
-      {/* <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24217.25918344841!2d-73.94789798229141!3d40.64846067767145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25ca1feb79989%3A0xf6d6b27d558e2dea!2sEast%20Flatbush%2C%20Brooklyn%2C%20NY%2C%20USA!5e0!3m2!1sen!2ssa!4v1634288442980!5m2!1sen!2ssa"
-        width="330"
-        height="200"
-        style={{ border: 0 }}
-        allowfullscreen=""
-        loading="lazy"
-      ></iframe> */}
     </div>
   );
 }
 
-export default Map;
+export default React.memo(Map);

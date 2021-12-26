@@ -10,6 +10,7 @@ import Agents from "./components/agents/agents";
 import InterestList from "./components/interestList/interest";
 import Profile from "./components/profile/profile";
 import Property from "./components/property/property";
+import Users from "./components/users/users";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
         <Route exact path="/interestList" element={<InterestList />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/property/:id" element={<Property />} />
-        
+        <Route exact path="/users" element={<Users />} />
+
         {/* <Route path="*" element={<Notfound />} /> */}
       </Routes>
     </div>

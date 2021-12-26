@@ -77,6 +77,16 @@ const Header = () => {
                 Profile
               </Link>
             </li>
+            {state.signIn.role === "61c05b910cca090670f00827" && (
+              <>
+                <li className="lie">
+                  <Link className="link" to="/users">
+                    Users
+                  </Link>
+                </li>
+              </>
+            )}
+
             <li className="lie">
               <span className="link" onClick={logout}>
                 <AiOutlineLogout />
