@@ -1,0 +1,164 @@
+.profilePage {
+  border-bottom-right-radius: 11%;
+  width: 530px;
+  height: 640px;
+}
+
+.profileTextContener {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 60px 80px;
+  background-color: rgba(126, 94, 93, 0.116);
+  padding: 20px 60px;
+  border-radius: 10px;
+}
+
+.userName {
+  font-size: 60px;
+  display: inline-block;
+}
+.profileTextContener h5 {
+  font-size: 23px;
+  margin-bottom: 10px;
+  color: rgba(61, 61, 61, 0.904);
+}
+.profileTextContener h5 span {
+  font-size: 24px;
+  font-weight: 900;
+  color: black;
+}
+
+.pen {
+  font-size: 27px;
+  margin-left: 40px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: 0.5s ease;
+}
+
+.pen:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+
+.updateUserData input {
+  border-style: none;
+  padding: 5px;
+  border-radius: 3px;
+  border-bottom: 0.5px solid rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.658);
+  background-color: rgba(0, 0, 0, 0);
+  width: 300px;
+}
+
+.modal {
+  align-items: center;
+  text-align: center;
+}
+
+.modelDes {
+  margin-top: 30px;
+  text-align: left;
+  margin-left: 48px;
+  font-size: 25px;
+}
+.submitBtn {
+  margin-top: 50px;
+  padding: 12px 20px;
+  border-radius: 7px;
+  border: none;
+  transition: 0.5s ease;
+  background: rgb(7, 7, 7);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.submitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+
+.editeImg {
+  opacity: 0;
+  font-size: 40px;
+  position: absolute;
+  top: 54px;
+  left: 0px;
+  font-weight: 100;
+  color: black;
+  z-index: 2;
+  padding: 300px 245px;
+  border-bottom-right-radius: 11%;
+  background-color: rgba(128, 128, 128, 0.342);
+}
+
+.editeImg:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.lable {
+  position: absolute;
+}
+
+.camICon {
+  color: black;
+  margin-left: 48px;
+  font-size: 60px;
+}
+
+.box {
+  border-radius: 10px;
+}
+
+.available {
+  position: absolute;
+  top: 420px;
+  left: 620px;
+  font-size: 25px;
+}
+.availablText {
+  margin-right: 10px;
+}
+
+.payy {
+  background-color: rgba(131, 95, 95, 0.164);
+  position: absolute;
+  top: 510px;
+  left: 620px;
+  font-size: 25px;
+  padding: 10px 70px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.subscribeBtn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 7px;
+  border: none;
+  transition: 0.5s ease;
+  background: rgb(7, 7, 7);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.userPropertyContener {
+ position: absolute;
+ left: 620px;
+ top: 670px;
+ font-size: 30px;
+}
+
+.propertyImgP{
+    width: 200px;
+    height: 200px;
+    border-radius: 7%;
+}
+.propertyh3{
+    display: inline-block;
+ margin-right: 10px;
+
+}
