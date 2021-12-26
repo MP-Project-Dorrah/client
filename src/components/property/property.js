@@ -104,7 +104,7 @@ const Property = () => {
                 {property[0].propertyHighlights.room}
                 <IoIosBed />
               </div>
-              <Map />
+              <Map location={property[0].location} />
               <div>
                 Description
                 <h6> {property[0].describe} </h6>
@@ -112,7 +112,11 @@ const Property = () => {
               {/* the seller cant take an appointment if its the owner  */}
               {state.signIn.userID !== property[0].postedBy._id &&
                 property[0].postedBy.Availability && (
-                  <Scheduled city={property[0].city} />
+                  <Scheduled
+                    city={property[0].city}
+                    sellerId={property[0].postedBy._id}
+                    location={property[0].location}
+                  />
                 )}
             </h4>
             <div className="imgContener">

@@ -50,7 +50,6 @@ function Home() {
   const [value, setValue] = React.useState([0, 500000]);
   const [max, setMax] = useState(500000);
   const [min, setMin] = useState(0);
-
   const [img, setImages] = useState([]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -58,7 +57,7 @@ function Home() {
   const [bathrooms, setBathrooms] = useState(0);
   const [rooms, setRooms] = useState(0);
   const [describe, setDescribe] = useState("");
-
+  const [location, setLocation] = useState("");
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -134,13 +133,14 @@ function Home() {
       {state.signIn.role === "61c05b020cca090670f00821" &&
         state.signIn.isSub === true && (
           <>
+            {console.log("hereeerr")}
             <div className="newPostBtn">
               <Button
                 onClick={() => {
                   handleOpen();
                 }}
               >
-                + Post a new property
+                + Post new property
               </Button>
             </div>
 
@@ -241,6 +241,16 @@ function Home() {
                       type="number"
                       placeholder="how many bathroom"
                     />
+                    <br />
+                    <input
+                      className="newPostInput"
+                      onChange={(e) => {
+                        setLocation(e.target.value);
+                      }}
+                      type="text"
+                      placeholder="copy google map link here"
+                    />
+
                     {img.length ? (
                       <div>
                         <UseStorage
@@ -249,6 +259,7 @@ function Home() {
                           price={price}
                           city={city}
                           bathrooms={bathrooms}
+                          location={location}
                           rooms={rooms}
                           describe={describe}
                           postedBy={state.signIn.userID}
