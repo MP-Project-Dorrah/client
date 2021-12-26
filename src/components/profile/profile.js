@@ -9,6 +9,10 @@ import PaymentForm from "./../payment";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 import Switch from "@mui/material/Switch";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import CheckIcon from "@mui/icons-material/Check";
+import ToggleButton from "@mui/material/ToggleButton";
 
 const PUBLIC_KEY =
   "pk_test_51K7lpGEhqG80ZdS5vrY9JFVX0W1osFI2kKVDHkuPAmCI0bazpn9TWU7Svfdo6nSWy8Jm1a2N02JrsI0KgrzMUeHY001OBLvj1k";
@@ -23,8 +27,9 @@ const Profile = () => {
   const [properties, setProperties] = useState([]);
   const [isSub, setIsSub] = useState(false);
   const [message, setMessage] = useState("");
+  const [available, setAvailable] = useState(false);
+  const [selected, setSelected] = React.useState(false);
 
-  
   useEffect(() => {
     getUser();
     // eslint-disable-next-line
@@ -40,13 +45,7 @@ const Profile = () => {
       // }
     );
     setuser(user.data);
-    if (user.data[0].Availability){
-      setMessage("Yes")
-    }
-    else{
-      setMessage("No")
-    }
-    console.log(user.data[0].Availability);
+    setSelected(user.data[0].Availability);
     setIsSub(user.data[0].isSub);
 
     const subscribe = await axios.get(
@@ -76,6 +75,25 @@ const Profile = () => {
     console.log(id);
     // navigate(`/profile/${id}`);
   };
+  const availableToggle = async () => {
+    const result = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}/user/available`,
+      {
+        by: state.signIn.userID,
+      }
+    );
+    if (result) {
+      console.log(result);
+    }
+
+    if (selected === true) {
+      setSelected(false);
+    } else {
+      setSelected(true);
+    }
+    // getUser();
+  };
+
   return (
     <>
       {user.length && (
@@ -122,9 +140,17 @@ const Profile = () => {
           )}
           {(state.signIn.role === "61c05b020cca090670f00821" ||
             state.signIn.role === "61c05b880cca090670f00825") && (
-            <>are you available ?
-            {message}
-            
+            <>
+              are you available ?
+              <ToggleButton
+                value="check"
+                selected={selected}
+                onChange={() => {
+                  availableToggle();
+                }}
+              >
+                <CheckIcon />
+              </ToggleButton>
             </>
           )}
         </>
