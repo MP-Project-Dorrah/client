@@ -8,6 +8,7 @@ import { FaBath } from "react-icons/fa";
 import { IoIosBed } from "react-icons/io";
 import Scheduled from "./../scheduled/scheduled";
 import Map from "../map/map";
+import { MdEmail } from "react-icons/md";
 
 const Property = () => {
   let navigate = useNavigate();
@@ -122,9 +123,22 @@ const Property = () => {
             <div className="imgContener">
               <img className="imgg" src={property[0].postedBy.img} alt="img" />
             </div>
+
             <p onClick={() => person(property[0].postedBy._id)} className="by">
               {property[0].postedBy.username}
             </p>
+            {/* WhatsApp icon */}
+            <a
+              href={`https://wa.me/${property[0].postedBy.phonNumber}`}
+              class="whatsapp_float"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-whatsapp whatsapp-icon"></i>
+            </a>
+            <a href={`mailto:${property[0].postedBy.email}`}>
+              <MdEmail />
+            </a>
           </div>
 
           {property.length &&

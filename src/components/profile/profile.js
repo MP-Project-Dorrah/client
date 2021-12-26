@@ -13,6 +13,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import CheckIcon from "@mui/icons-material/Check";
 import ToggleButton from "@mui/material/ToggleButton";
+import { BsPencilFill } from "react-icons/bs";
 
 const PUBLIC_KEY =
   "pk_test_51K7lpGEhqG80ZdS5vrY9JFVX0W1osFI2kKVDHkuPAmCI0bazpn9TWU7Svfdo6nSWy8Jm1a2N02JrsI0KgrzMUeHY001OBLvj1k";
@@ -29,6 +30,11 @@ const Profile = () => {
   const [message, setMessage] = useState("");
   const [available, setAvailable] = useState(false);
   const [selected, setSelected] = React.useState(false);
+  const [model, setModel] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getUser();
@@ -98,6 +104,8 @@ const Profile = () => {
     <>
       {user.length && (
         <>
+          <BsPencilFill onClick={() => handleOpen()} />
+
           <img src={user[0].img} />
           <h3>{user[0].name}</h3>
           <h5>@{user[0].username}</h5>
