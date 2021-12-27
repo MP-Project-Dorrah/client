@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import UseStorage from "../../hocks/useStorage";
 import video from "./../../videos/video.mp4";
 import { grey } from "@mui/material/colors";
+import { FaBath, FaRulerCombined } from "react-icons/fa";
+import { IoIosBed } from "react-icons/io";
 
 const primary = grey[50];
 
@@ -103,35 +105,81 @@ function Home() {
       </video>
       <div className="bggg"></div>
       <div className="homeHeaderText">Discover a place you'll love to live</div>
-      <div className="sortProperty">
+      <h1> See how Perfect View can help </h1>
+      <img
+        className="secondPageB"
+        src="https://www.originaldesign.com/assets/lines-bk.png"
+      />
+      <div className="secondPage">
         <div>
-          <input
-            className="searchInput"
-            placeholder="searh"
-            onChange={(e) => setSearchFun(e.target.value)}
+          <img
+            className="homeImges"
+            src="https://images.pexels.com/photos/7599735/pexels-photo-7599735.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           />
+          <br />
+          <h4 className="h4Home"> Buy a Real Estate </h4>
+          <p>
+            Perfect View can match you with a house you will want to call home.
+          </p>
         </div>
         <div>
-          <Box sx={{ width: 300 }}>
-            <Slider
-              getAriaLabel={() => "Temperature range"}
-              value={value}
-              onChange={handleChange}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
-              min={100} /////
-              max={500000} ///////
-              step={1000}
-              sx={{
-                color: "white",
-              }}
-              // color="secondary"
+          <img
+            className="homeImges"
+            src="https://images.pexels.com/photos/1181625/pexels-photo-1181625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          />
+          <br />
+          <h4 className="h4Home"> Sell a Real Estate </h4>
+          <p>
+            Perfect View can match you with a house you will want to call home.
+          </p>
+        </div>
+        <div>
+          <img
+            className="homeImges"
+            src="https://images.pexels.com/photos/327540/pexels-photo-327540.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          />
+          <br />
+          <h4 className="h4Home"> Be an Agent </h4>
+          <p>
+            Perfect View can match you with a house you will want to call home.
+          </p>
+        </div>
+      </div>
+      <div className="thirdPage">
+        <h1> Explore homes on Perfect View </h1>
+        <br />
+        <br />
+        <br />
+        <div className="sortProperty">
+          <div>
+            <input
+              className="searchInput"
+              placeholder="searh"
+              onChange={(e) => setSearchFun(e.target.value)}
             />
-          </Box>
+          </div>
+          <div>
+            <Box sx={{ width: 300 }}>
+              <Slider
+                getAriaLabel={() => "Temperature range"}
+                value={value}
+                onChange={handleChange}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+                min={100} /////
+                max={500000} ///////
+                step={1000}
+                sx={{
+                  color: "black",
+                }}
+                // color="secondary"
+              />
+            </Box>
+          </div>
         </div>
       </div>
       {state.signIn.role === "61c05b020cca090670f00821" &&
-        state.signIn.isSub === true && (
+        state.signIn.subscribeStatus !== "unActive" && (
           <>
             {console.log("hereeerr")}
             <div className="newPostBtn">
@@ -143,7 +191,6 @@ function Home() {
                 + Post new property
               </Button>
             </div>
-
             <Modal
               className="modal"
               open={open}
@@ -283,14 +330,33 @@ function Home() {
             {properties.map((ele) => {
               return (
                 <>
-                  <div className="propertyImgContener">
-                    <img
-                      onClick={() => goInside(ele._id)}
-                      className="propertyImg"
-                      src={ele.imgArr[0]}
-                    />
+                  <div
+                    className="content_img"
+                    onClick={() => goInside(ele._id)}
+                  >
+                    <img className="propertyImg" src={ele.imgArr[0]} />
+                    <div className="spanDev">
+                      <h2 className="hoverH3"> {ele.name} </h2>
+                      <h4> {ele.city} </h4>
+                      <button className="priceBtn"> ${ele.price}</button>
+                      <br />
+
+                      {/* <span>
+                        <FaBath />
+                        {ele.propertyHighlights.bathroom}{" "}
+                      </span>
+                      <span>
+                        <IoIosBed />
+                        {ele.propertyHighlights.room}{" "}
+                      </span>
+                      <span>
+                        <FaRulerCombined />
+                        {ele.propertyHighlights.space}{" "}
+                      </span> */}
+                    </div>
                   </div>
                   <div></div>
+
                   {/* <h3 onClick={() => goInside(ele._id)}>{ele.name}</h3>
                   <h6>{ele.city}</h6> */}
                 </>

@@ -17,7 +17,12 @@ function InterestList() {
 
   const getAllLikedProperties = async () => {
     const Properties = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/interestList/userLikes/${state.signIn.userID}`
+      `${process.env.REACT_APP_BASE_URL}/interestList/userLikes/${state.signIn.userID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      }
     );
     setProperties(Properties.data);
     console.log(Properties);

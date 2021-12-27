@@ -105,7 +105,7 @@
 
 .camICon {
   color: black;
-  margin-left: 48px;
+  margin-left: 35px;
   font-size: 60px;
 }
 
@@ -135,7 +135,7 @@
 }
 
 .subscribeBtn {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 12px 20px;
   border-radius: 7px;
   border: none;
@@ -146,19 +146,25 @@
   font-weight: bold;
 }
 .userPropertyContener {
- position: absolute;
- left: 620px;
- top: 670px;
- font-size: 30px;
+  position: absolute;
+  left: 620px;
+  top: 670px;
+  font-size: 30px;
 }
 
-.propertyImgP{
-    width: 200px;
-    height: 200px;
-    border-radius: 7%;
+.propertyImgP {
+  width: 200px;
+  height: 200px;
+  border-radius: 7%;
 }
-.propertyh3{
-    display: inline-block;
- margin-right: 10px;
-
+.propertyh3 {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 7px;
+}
+.propertyImgP:hover {
+  cursor: pointer;
+}
+.subscribeStatus {
+    margin-bottom: 10px;
 }

@@ -8,13 +8,13 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 function Map(props) {
   console.log(props.location);
-  // const getdata = async () => {
-  //   const result = await axios.get(
-      // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=${process.env.REACT_APP_API_KEY}`
-  //   );
-  //   console.log(result);
-  // };
-  // getdata();
+  const getdata = async () => {
+    const result = await axios.get(
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyC4JqBOR-km_LYFHF1rW7fWG-vrholjOZQ`
+    );
+    console.log(result);
+  };
+  getdata();
 
   const newMap = props.location.slice(
     props.location.indexOf("@") + 1,
@@ -37,7 +37,7 @@ function Map(props) {
   return (
     <div style={{ height: "40vh", width: "75%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key:process.env.REACT_APP_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
         defaultCenter={center}
         defaultZoom={11}
         yesIWantToUseGoogleMapApiInternals

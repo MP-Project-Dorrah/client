@@ -4,11 +4,14 @@ import axios from "axios";
 import "./style.css";
 import { useSelector } from "react-redux";
 import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
-import { FaBath } from "react-icons/fa";
+import { FaBath, FaRulerCombined } from "react-icons/fa";
 import { IoIosBed } from "react-icons/io";
+
 import Scheduled from "./../scheduled/scheduled";
 import Map from "../map/map";
 import { MdEmail } from "react-icons/md";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 const Property = () => {
   let navigate = useNavigate();
@@ -86,8 +89,31 @@ const Property = () => {
     <div className="contener">
       {property && property.length && (
         <>
+          {console.log(property)}
+          <div className="anim">
+            <Carousel
+              autoPlay={true}
+              infiniteLoop={true}
+              interval={2000}
+              showStatus={false}
+              thumbWidth={100}
+              showIndicators={false}
+              showThumbs={false}
+              dynamicHeight={false}
+            >
+              {property[0].imgArr &&
+                property[0].imgArr.map((ele, i) => {
+                  console.log(ele);
+                  return (
+                    <div className="imgContener" key={i}>
+                      <img alt="img" className="propertyImges" src={ele} />
+                    </div>
+                  );
+                })}
+            </Carousel>
+          </div>
+
           {/* // img arr */}
-          <img className="imggg" src={property[0].imgArr[0]} alt="img" />
           {property[0].name}
           <div className="post2">
             <h4>
@@ -104,6 +130,8 @@ const Property = () => {
                 <FaBath />
                 {property[0].propertyHighlights.room}
                 <IoIosBed />
+                {property[0].propertyHighlights.space}sqft
+                <FaRulerCombined />
               </div>
               <Map location={property[0].location} />
               <div>
@@ -120,25 +148,36 @@ const Property = () => {
                   />
                 )}
             </h4>
-            <div className="imgContener">
-              <img className="imgg" src={property[0].postedBy.img} alt="img" />
-            </div>
+            {state.signIn.userID !== property[0].postedBy._id && (
+              <>
+                <div className="imgContener">
+                  <img
+                    className="imgg"
+                    src={property[0].postedBy.img}
+                    alt="img"
+                  />
+                </div>
 
-            <p onClick={() => person(property[0].postedBy._id)} className="by">
-              {property[0].postedBy.username}
-            </p>
-            {/* WhatsApp icon */}
-            <a
-              href={`https://wa.me/${property[0].postedBy.phonNumber}`}
-              class="whatsapp_float"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fa fa-whatsapp whatsapp-icon"></i>
-            </a>
-            <a href={`mailto:${property[0].postedBy.email}`}>
-              <MdEmail />
-            </a>
+                <p
+                  onClick={() => person(property[0].postedBy._id)}
+                  className="by"
+                >
+                  {property[0].postedBy.username}
+                </p>
+                {/* WhatsApp icon */}
+                <a
+                  href={`https://wa.me/${property[0].postedBy.phonNumber}`}
+                  class="whatsapp_float"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa fa-whatsapp whatsapp-icon"></i>
+                </a>
+                <a href={`mailto:${property[0].postedBy.email}`}>
+                  <MdEmail />
+                </a>
+              </>
+            )}
           </div>
 
           {property.length &&
