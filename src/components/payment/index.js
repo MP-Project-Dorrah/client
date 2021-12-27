@@ -18,7 +18,13 @@ export default function PaymentForm(props) {
       type: "card",
       card: elements.getElement(CardElement),
     });
+    {console.log(elements , "elements")}
+    let now2 = new Date();
 
+  let now = new Date();
+  // now.setDate(now.getDate() + 30);
+  console.log(now , "startDate");
+  // console.log(  now.setDate(now.getDate() + 30) , "endDate");
     if (!error) {
       try {
         const { id } = paymentMethod;
@@ -29,6 +35,14 @@ export default function PaymentForm(props) {
             amount: 1000,
             id,
             userId: state.signIn.userID,
+            startDate :now2 , 
+            endDate :now.setDate(now.getDate() + 30),
+            paymentMethod
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${state.signIn.token}`,
+            },
           }
         );
         console.log(response);
@@ -52,6 +66,7 @@ export default function PaymentForm(props) {
           <fieldset className="FormGroup">
             <div className="FormRow">
               <CardElement />
+             
             </div>
           </fieldset>
           <button> subscribe </button>

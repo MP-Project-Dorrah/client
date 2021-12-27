@@ -84,6 +84,11 @@ function Scheduled(props) {
         PropertyLocation: props.location,
         type: alignment,
         date: day + " " + time,
+      } ,
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
       }
     );
     if (result.status === 200) {

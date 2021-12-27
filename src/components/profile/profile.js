@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./../payment";
@@ -18,6 +18,8 @@ import IconButton from "@mui/material/IconButton";
 import { RiPencilFill } from "react-icons/ri";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import UseStorageProfile from "../../hocks/useStorageProfile";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../../reducers/login";
 
 const style = {
   position: "absolute",
@@ -48,6 +50,8 @@ const PUBLIC_KEY =
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 const Profile = () => {
+  let navigate = useNavigate();
+  const dispatchEvent = useDispatch();
   const state = useSelector((state) => {
     return state;
   });
@@ -92,10 +96,16 @@ const Profile = () => {
     console.log(user.data);
 
     const subscribe = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/subscribe/${state.signIn.userID}`
+      `${process.env.REACT_APP_BASE_URL}/subscribe/${state.signIn.userID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      }
     );
     console.log(subscribe.data[0], "subscribe data");
     setSubscribe(subscribe.data[0]);
+    // subscribe.endDate.slice(0,10)
 
     const properties = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/property/userProperty/${state.signIn.userID}`
@@ -108,9 +118,17 @@ const Profile = () => {
 
   const cancleSubscribe = async () => {
     console.log("cancleSubscribe");
-    await axios.put(`${process.env.REACT_APP_BASE_URL}/subscribe/delete`, {
-      userId: state.signIn.userID,
-    });
+    await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/subscribe/delete`,
+      {
+        userId: state.signIn.userID,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      }
+    );
     getUser();
   };
 
@@ -123,6 +141,11 @@ const Profile = () => {
       `${process.env.REACT_APP_BASE_URL}/user/available`,
       {
         by: state.signIn.userID,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
       }
     );
     if (result) {
@@ -152,6 +175,11 @@ const Profile = () => {
         city,
         phonNumber: phone,
         email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
       }
     );
 
@@ -163,6 +191,24 @@ const Profile = () => {
     } else {
       setMessage("Sorry, somthing went wrong");
     }
+  };
+  const deleteAccount = async () => {
+    await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}/user/delete/${state.signIn.userID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      }
+    );
+    const data = {
+      role: "",
+      token: "",
+      userID: "",
+      username: "",
+    };
+    dispatchEvent(logOut(data));
+    navigate(`/`);
   };
 
   return (
@@ -357,21 +403,55 @@ const Profile = () => {
           {state.signIn.role === "61c05b020cca090670f00821" && (
             <>
               <div className="payy">
-                {/* if the seller already have a valid subscribe  */}
-                {user[0] && user[0].isSub ? (
+                {/* if the seller already have a valid subscribe
+                its have to be three cases (active - cancelPending  - unactive)
+
+                first one - will show > button cancle 
+                second -   wil show  > cancle succ - your sub will 
+                third - will show > you dont have an active subscribe  > button subscribe
+
+                fisrt and second will update just on user key 
+                if the month pass wil update every key (user - subscribe - property )
+                
+                */}
+                {user[0] && user[0].subscribeStatus === "active" && (
                   <>
-                    <div> its subscribe </div>
-                    <button className="subscribeBtn" onClick={cancleSubscribe}>
-                      {" "}
-                      cancle{" "}
-                    </button>
+                    <div>
+                      <h4 className="subscribeStatus"> Subscribe Status </h4>
+
+                      <p>
+                        Your Next Payment Date : (
+                        {subscribe &&
+                          subscribe.endDate &&
+                          subscribe.endDate.slice(0, 10)}
+                        )
+                      </p>
+                      <button
+                        className="subscribeBtn"
+                        onClick={cancleSubscribe}
+                      >
+                        cancel
+                      </button>
+                    </div>
                   </>
-                ) : (
+                )}
+
+                {user[0] && user[0].subscribeStatus === "unActive" && (
                   <div>
                     {/* if the seller dosn't have a valid subscribe  */}
                     <Elements stripe={stripeTestPromise}>
                       <PaymentForm getOneUser={getUser} />
                     </Elements>
+                  </div>
+                )}
+
+                {user[0] && user[0].subscribeStatus === "cancelPending" && (
+                  <div>
+                    canceled successfully - your subscribe will end on ({" "}
+                    {subscribe &&
+                      subscribe.endDate &&
+                      subscribe.endDate.slice(0, 10)}{" "}
+                    )
                   </div>
                 )}
               </div>
@@ -395,6 +475,7 @@ const Profile = () => {
                       </>
                     );
                   })}
+                <button onClick={deleteAccount}>Delete my account</button>
               </div>
             </>
           )}

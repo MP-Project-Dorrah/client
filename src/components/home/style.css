@@ -3,11 +3,10 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 100px;
-  
+  margin-top: 50px;
 }
-.propertyy div{
-margin: 10px;
+.propertyy div {
+  margin: 10px;
 }
 .backg {
   width: 100vw;
@@ -27,20 +26,20 @@ margin: 10px;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   z-index: -2;
-  background-color: rgba(0, 0, 0, 0.568);
+  background-color: rgba(0, 0, 0, 0.479);
 }
 
 .videoInsideDec {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -49,15 +48,15 @@ margin: 10px;
   background-color: rgb(0, 0, 0);
   /* opacity: 0.7; */
 }
-.homeContener {
-  color: white;
-}
+
 .homeHeaderText {
   text-align: center;
   font-size: 90px;
-  margin: 170px 250px 50px;
-  font-family: 'Julius Sans One', sans-serif;
+  margin: 230px 250px 510px;
+  font-family: "Julius Sans One", sans-serif;
   font-weight: 600;
+
+  color: white;
 }
 
 .sortProperty {
@@ -65,13 +64,14 @@ margin: 10px;
   padding-bottom: 25px;
   margin: 0 400px 0 400px;
   display: flex;
+  color: black;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.158);
+  background-color: rgba(0, 0, 0, 0);
   border: 0.2px solid rgba(153, 152, 152, 0.616);
-  border-radius: 3px;
+  border-radius: 10px;
 }
 .sortProperty input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.808);
+  color: rgba(80, 79, 79, 0.808);
 }
 
 .sortProperty div {
@@ -81,16 +81,110 @@ margin: 10px;
 .searchInput {
   border-style: none;
   border-radius: 3px;
-  border: 0.5px solid rgb(255, 255, 255);
+  border: 0.5px solid rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0);
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 5px;
 }
-.propertyImg{
-    width: 100%;
-    height: 100%
+.propertyImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
-.propertyImgContener{
-    width: 450px;
-    height: 450px;  
+
+.secondPage {
+  display: flex;
+  justify-content: center;
+  margin: 30px 150px;
+}
+
+.secondPage div {
+  margin: 20px;
+}
+.homeContener {
+  text-align: center;
+}
+
+.homeImges {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+.h4Home {
+  margin: 10px 0;
+  font-size: 22px;
+}
+
+.thirdPage {
+  margin-top: 300px;
+}
+
+.secondPageB {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  top: 107vh;
+  transform: rotate(-5deg);
+}
+
+/* Parent Container */
+.content_img {
+  position: relative;
+  width: 430px;
+  height: 430px;
+  float: left;
+  margin-right: 10px;
+}
+
+/* Child Text Container */
+.content_img div {
+  position: absolute;
+  height: 414px;
+  bottom: -5px;
+  right: -10px;
+  background: rgba(0, 0, 0, 0.801);
+  color: white;
+  margin-bottom: 5px;
+  font-family: sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+/* Hover on Parent Container */
+.content_img:hover {
+  cursor: pointer;
+}
+
+.content_img:hover div {
+  width: 400px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  visibility: visible;
+  opacity: 0.7;
+}
+.hoverH3 {
+  margin-top: 150px;
+  font-size: 35px;
+  margin-bottom: 2px;
+}
+
+.priceBtn {
+  margin-top: 13px;
+  margin-bottom: 70px;
+  border-style: none;
+  border-radius: 30px;
+  padding: 15px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0.5px solid rgb(255, 255, 255);
+}
+
+.spanDev span {
+  margin: 10px;
+}
+
+.priceBtn:hover {
+  cursor: pointer;
 }

@@ -31,3 +31,18 @@
     font-size: 22px;
   }
 }
+
+.propertyImges {
+  height: 600px;
+  width: 600px;
+  border-radius: 10px;
+}
+.imgContener {
+  height: 600px;
+  width: 600px;
+  border-radius: 40px;
+}
+.anim {
+  margin-right: 840px;
+
+}
