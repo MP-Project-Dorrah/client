@@ -10,6 +10,7 @@ import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
+import "./style.css";
 
 function Scheduled(props) {
   const [time, setTime] = React.useState("");
@@ -84,7 +85,7 @@ function Scheduled(props) {
         PropertyLocation: props.location,
         type: alignment,
         date: day + " " + time,
-      } ,
+      },
       {
         headers: {
           Authorization: `Bearer ${state.signIn.token}`,
@@ -99,20 +100,26 @@ function Scheduled(props) {
   };
 
   return (
-    <div>
+    <div className="tourContener">
+      <br />
       <h3> Schedule A Tour ? </h3>
-      <p> Tour Type</p>
+      <p className="tourType"> Tour Type</p>
       <ToggleButtonGroup
         color="primary"
         value={alignment}
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton value="In-Person">In-Person</ToggleButton>
-        <ToggleButton value="Video Chat">Video Chat</ToggleButton>
+        <ToggleButton className="toggleBtnn" value="In-Person">
+          {" "}
+          <span> In-Person </span>
+        </ToggleButton>
+        <ToggleButton className="toggleBtnn" value="Video Chat">
+          {" "}
+          <span> Video Chat </span>
+        </ToggleButton>
       </ToggleButtonGroup>
-
-      <div>
+      <div className="days">
         <ToggleButtonGroup
           color="primary"
           value={day}
@@ -124,72 +131,98 @@ function Scheduled(props) {
               day1.toString().slice(8, 10) + " " + day1.toString().slice(4, 7)
             }
           >
-            <p>{day1.toString().slice(8, 10)} </p>
-            <p>{day1.toString().slice(4, 7)} </p>
+            <div>
+              <p>{day1.toString().slice(8, 10)} </p>
+              {/* <div className="vv"></div> */}
+              <p>{day1.toString().slice(4, 7)} </p>
+            </div>
           </ToggleButton>
+
+          <div className="divBetween"> </div>
           <ToggleButton
             value={
               day2.toString().slice(8, 10) + " " + day2.toString().slice(4, 7)
             }
           >
-            <p>{day2.toString().slice(8, 10)} </p>
-            <p>{day2.toString().slice(4, 7)} </p>
+            <div>
+              <p>{day2.toString().slice(8, 10)} </p>
+              <p>{day2.toString().slice(4, 7)} </p>
+            </div>
           </ToggleButton>
+          <div className="divBetween"> </div>
           <ToggleButton
+            className="toggleBtnnn"
             value={
               day3.toString().slice(8, 10) + " " + day3.toString().slice(4, 7)
             }
           >
-            <p>{day3.toString().slice(8, 10)} </p>
-            <p>{day3.toString().slice(4, 7)} </p>
+            <div>
+              <p>{day3.toString().slice(8, 10)} </p>
+              <p>{day3.toString().slice(4, 7)} </p>
+            </div>
           </ToggleButton>
+          <div className="divBetween"> </div>
           <ToggleButton
             value={
               day4.toString().slice(8, 10) + " " + day4.toString().slice(4, 7)
             }
           >
-            <p>{day4.toString().slice(8, 10)} </p>
-            <p>{day4.toString().slice(4, 7)} </p>
+            <div>
+              <p>{day4.toString().slice(8, 10)} </p>
+              <p>{day4.toString().slice(4, 7)} </p>
+            </div>
           </ToggleButton>
+          <div className="divBetween"> </div>
         </ToggleButtonGroup>
-        do you want an agent ? <span onClick={handleClick}> {message} </span>
-        {message === "no" && agents && (
-          <>
-            <ToggleButtonGroup
-              color="primary"
-              value={agent}
-              exclusive
-              onChange={handleChangeAgent}
-            >
-              {agents.map((ele) => {
-                return <ToggleButton value={ele._id}>{ele.name}</ToggleButton>;
-              })}
-            </ToggleButtonGroup>
-          </>
-        )}
       </div>
-
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Choose a time</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={time}
-            label="Age"
-            onChange={handleChangeTime}
+      <div className="time">
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Choose a time</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={time}
+              label="Age"
+              onChange={handleChangeTime}
+            >
+              <MenuItem value="8AM">8AM</MenuItem>
+              <MenuItem value="9AM">9AM</MenuItem>
+              <MenuItem value="10AM">10AM</MenuItem>
+              <MenuItem value="11AM">11AM</MenuItem>
+              <MenuItem value="12PM">12PM</MenuItem>
+              <MenuItem value="1PM">1PM</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+      <br />
+      do you want an agent ? <span onClick={handleClick}> {message} </span>
+      <br />
+      <br />
+      {message === "no" && agents && (
+        <>
+          <ToggleButtonGroup
+            color="primary"
+            value={agent}
+            exclusive
+            onChange={handleChangeAgent}
           >
-            <MenuItem value="8AM">8AM</MenuItem>
-            <MenuItem value="9AM">9AM</MenuItem>
-            <MenuItem value="10AM">10AM</MenuItem>
-            <MenuItem value="11AM">11AM</MenuItem>
-            <MenuItem value="12PM">12PM</MenuItem>
-            <MenuItem value="1PM">1PM</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-
-      <button onClick={sendMessage}> {scheduleBtn} </button>
+            {agents.map((ele) => {
+              return (
+                <ToggleButton value={ele._id}>
+                  <img className="agentImg" src={ele.img} />
+                  <div> {ele.name} </div>
+                </ToggleButton>
+              );
+            })}
+          </ToggleButtonGroup>
+        </>
+      )}
+      <button className="tourBtn" onClick={sendMessage}>
+        {" "}
+        {scheduleBtn}{" "}
+      </button>
       {progress}
     </div>
   );

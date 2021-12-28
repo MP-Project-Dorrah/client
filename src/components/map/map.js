@@ -35,20 +35,24 @@ function Map(props) {
     // use map and maps objects
   };
   return (
-    <div style={{ height: "40vh", width: "75%" }}>
-      <GoogleMapReact
+    <div className="mapContainer">
+     <h3> local information </h3>
+    <div   style={{ height: "40vh", width: "94%"  , borderRadius:"50%"}}>
+  
+      <GoogleMapReact 
         bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
         defaultCenter={center}
         defaultZoom={11}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
       >
-        <AnyReactComponent
+        <AnyReactComponent  
           lat={center.lat}
           lng={center.lng}
           text={<FaMapMarkerAlt className="mapIcon" />}
         />
       </GoogleMapReact>
+    </div>
     </div>
   );
 }

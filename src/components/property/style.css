@@ -1,48 +1,152 @@
 .whatsapp_float {
-  position: fixed;
+  /* position: fixed; */
   width: 60px;
   height: 60px;
-  bottom: 40px;
-  right: 40px;
+  /* bottom: 40px;
+  right: 40px; */
   background-color: #25d366;
   color: #fff;
   border-radius: 50px;
   text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 100;
+  /* font-size: 30px; */
+  /* box-shadow: 2px 2px 3px #999; */
+  /* z-index: 100; */
 }
 
 .whatsapp-icon {
-  margin-top: 16px;
+  /* margin-top: 16px; */
 }
 
-/* for mobile */
-@media screen and (max-width: 767px) {
-  .whatsapp-icon {
-    margin-top: 10px;
-  }
-
-  .whatsapp_float {
-    width: 40px;
-    height: 40px;
-    bottom: 20px;
-    right: 10px;
-    font-size: 22px;
-  }
-}
 
 .propertyImges {
   height: 600px;
   width: 600px;
-  border-radius: 10px;
+  border-radius: 40px;
+  
 }
 .imgContener {
-  height: 600px;
+  /* height: 600px; */
   width: 600px;
   border-radius: 40px;
+  margin-bottom: 10px;
+ 
 }
-.anim {
-  margin-right: 840px;
+
+.propertyContener {
+  position: fixed;
+  margin-top: 20px;
+  right: 740px;
+  left: 100px;
+}
+
+.post2 {
+  position: absolute;
+  top: 120px;
+  left: 800px;
+  right:50px;
+}
+.child{
+  position: sticky;
+}
+.price {
+  margin-left: 10px;
+  font-size: 30px;
 
 }
+.likes {
+  position: absolute;
+  font-size: 33px;
+  left: 550px;
+  transition: 0.5s ease;
+}
+.likes:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+.homeHighlights {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  position: relative;
+  margin-left: 25px;
+}
+.homeHighlights span:first-child {
+  font-size: 24px;
+  position: absolute;
+  top: 0px;
+  left: -25px;
+}
+.secondChild {
+  font-size: 20px;
+  position: absolute;
+  top: 0px;
+  left: 139px;
+}
+.thirdChild{
+  font-size: 17px;
+  position: absolute;
+  top: 2px;
+  left: 365px; 
+}
+.homeHighlights p {
+  display: inline-block;
+  margin: 0 75px 0 0px;
+}
+
+
+.sellerInfoDiv{
+  margin-top: 30px;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.425); ;
+  margin-right:40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.425); ;
+  padding-top: 20px;
+/* margin-top: 70px */
+}
+.imgg{
+  margin-top: 10px;
+  border-radius: 50%;
+  width: 60px;
+}
+.SellerName{
+  position: absolute;
+  top:60px;
+  left: 67px
+}
+
+.contact{
+  position: absolute;
+  top:83px;
+  left: 68px ;
+  font-size: 13px;
+  color: rgb(83, 82, 82);
+}
+
+.email{
+  position: absolute;
+  top: 80px;
+  left: 190px ;
+  color: rgb(155, 37, 37);
+}
+.WhatsApp{
+  color: green;
+  position: absolute;
+  top: 82px;
+  left: 215px ;
+  font-size: 16px;
+}
+
+.describe{
+  /* margin-bottom: 10px; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.425); ;
+  margin-right: 40px;
+}
+
+.describe h6{
+    margin-bottom: 10px;
+
+}
+
+/* .anim{
+  position: fixed;
+  margin-right: 1000px;
+} */
