@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { IoHeartSharp, IoHeartOutline } from "react-icons/io5";
 import { FaBath, FaRulerCombined } from "react-icons/fa";
 import { IoIosBed } from "react-icons/io";
-
+import { BsWhatsapp } from "react-icons/bs";
 import Scheduled from "./../scheduled/scheduled";
 import Map from "../map/map";
 import { MdEmail } from "react-icons/md";
@@ -90,56 +90,103 @@ const Property = () => {
       {property && property.length && (
         <>
           {console.log(property)}
-          <div className="anim">
-            <Carousel
-              autoPlay={true}
-              infiniteLoop={true}
-              interval={2000}
-              showStatus={false}
-              thumbWidth={100}
-              showIndicators={false}
-              showThumbs={false}
-              dynamicHeight={false}
-            >
-              {property[0].imgArr &&
-                property[0].imgArr.map((ele, i) => {
-                  console.log(ele);
-                  return (
-                    <div className="imgContener" key={i}>
-                      <img alt="img" className="propertyImges" src={ele} />
-                    </div>
-                  );
-                })}
-            </Carousel>
-          </div>
+          <div className="propertyContener">
+            <div className="anim">
+              <Carousel
+                className="carousel"
+                autoPlay={true}
+                infiniteLoop={true}
+                interval={2000}
+                // showStatus={false}
+                thumbWidth={100}
+                showIndicators={false}
+                showThumbs={false}
+                dynamicHeight={false}
+                labels={true}
+              >
+                {property[0].imgArr &&
+                  property[0].imgArr.map((ele, i) => {
+                    console.log(ele);
+                    return (
+                      <div className="imgContener" key={i}>
+                        <img alt="img" className="propertyImges" src={ele} />
+                      </div>
+                    );
+                  })}
+              </Carousel>
 
-          {/* // img arr */}
-          {property[0].name}
-          <div className="post2">
-            <h4>
+              <span className="price">{property[0].price}$</span>
               {state.signIn.token.length && (
-                <span className="likes" onClick={like}>
-                  {isLiked}
-                </span>
-              )}
+            <span className="likes" onClick={like}>
+              {isLiked}
+            </span>
+          )}
+            </div>
+          </div>
+          {/* // img arr */}
+          {/* <span className="price">{property[0].price}$</span> */}
+        
+       
 
-              <span>{property[0].price}$</span>
-              <div>
-                Home Highlights
-                {property[0].propertyHighlights.bathroom}
-                <FaBath />
-                {property[0].propertyHighlights.room}
-                <IoIosBed />
-                {property[0].propertyHighlights.space}sqft
-                <FaRulerCombined />
+          <div className="post2">
+            <h1> {property[0].name} </h1>
+            <h4>
+              <div className="describe">
+                <h6 > {property[0].describe} </h6>
               </div>
-              <Map location={property[0].location} />
-              <div>
-                Description
-                <h6> {property[0].describe} </h6>
+              <br />
+              Home Highlights:
+              <div className="homeHighlights">
+                <div className="highlight">
+                  <span>
+                    <IoIosBed />
+                  </span>
+                  <p> {property[0].propertyHighlights.room} Rooms </p>
+                  <span className="secondChild">
+                    <FaBath />
+                  </span>
+                  <p> {property[0].propertyHighlights.bathroom} Bathrooms </p>
+                  <span className="thirdChild">
+                    <FaRulerCombined />
+                  </span>
+                  <p> {property[0].propertyHighlights.space}sqft </p>
+                </div>
               </div>
-              {/* the seller cant take an appointment if its the owner  */}
-              {state.signIn.userID !== property[0].postedBy._id &&
+              {state.signIn.userID !== property[0].postedBy._id && (
+                <div className="sellerInfoDiv">
+                seller info
+                  <div className="imgContener">
+                    <img
+                      className="imgg"
+                      src={property[0].postedBy.img}
+                      alt="img"
+                    />
+                  </div>
+                  <p className="SellerName"
+                    onClick={() => person(property[0].postedBy._id)}
+                    
+                  >
+                    {property[0].postedBy.username}
+                  </p>
+                  <span className="contact"> Contact seller : </span>
+                  {/* WhatsApp icon */}
+                  <a className="WhatsApp"
+                    href={`https://wa.me/${property[0].postedBy.phonNumber}`}
+                    // class="whatsapp_float"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                  < BsWhatsapp/>
+                  </a>
+                  <a className="email" href={`mailto:${property[0].postedBy.email}`}>
+                    <MdEmail />
+                  </a>
+                </div>
+              )}
+                 <Map location={property[0].location} />
+
+            {/* the seller cant take an appointment if its the owner  */}
+  {state.signIn.userID !== property[0].postedBy._id &&
                 property[0].postedBy.Availability && (
                   <Scheduled
                     city={property[0].city}
@@ -148,38 +195,8 @@ const Property = () => {
                   />
                 )}
             </h4>
-            {state.signIn.userID !== property[0].postedBy._id && (
-              <>
-                <div className="imgContener">
-                  <img
-                    className="imgg"
-                    src={property[0].postedBy.img}
-                    alt="img"
-                  />
-                </div>
-
-                <p
-                  onClick={() => person(property[0].postedBy._id)}
-                  className="by"
-                >
-                  {property[0].postedBy.username}
-                </p>
-                {/* WhatsApp icon */}
-                <a
-                  href={`https://wa.me/${property[0].postedBy.phonNumber}`}
-                  class="whatsapp_float"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="fa fa-whatsapp whatsapp-icon"></i>
-                </a>
-                <a href={`mailto:${property[0].postedBy.email}`}>
-                  <MdEmail />
-                </a>
-              </>
-            )}
           </div>
-
+  
           {property.length &&
             (state.signIn.userID === property[0].postedBy._id ||
               state.signIn.role === "61c05b910cca090670f00827") && ( // admin or  property owner
@@ -194,6 +211,7 @@ const Property = () => {
                 </button>
               </div>
             )}
+
         </>
       )}
     </div>
