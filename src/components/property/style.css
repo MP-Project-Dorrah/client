@@ -13,28 +13,21 @@
   /* z-index: 100; */
 }
 
-.whatsapp-icon {
-  /* margin-top: 16px; */
-}
-
-
 .propertyImges {
   height: 600px;
   width: 600px;
   border-radius: 40px;
-  
 }
 .imgContener {
   /* height: 600px; */
   width: 600px;
   border-radius: 40px;
   margin-bottom: 10px;
- 
 }
 
 .propertyContener {
   position: fixed;
-  margin-top: 20px;
+  margin-top: 40px;
   right: 740px;
   left: 100px;
 }
@@ -43,15 +36,14 @@
   position: absolute;
   top: 120px;
   left: 800px;
-  right:50px;
+  right: 50px;
 }
-.child{
+.child {
   position: sticky;
 }
 .price {
   margin-left: 10px;
   font-size: 30px;
-
 }
 .likes {
   position: absolute;
@@ -81,69 +73,67 @@
   top: 0px;
   left: 139px;
 }
-.thirdChild{
+.thirdChild {
   font-size: 17px;
   position: absolute;
   top: 2px;
-  left: 365px; 
+  left: 365px;
 }
 .homeHighlights p {
   display: inline-block;
   margin: 0 75px 0 0px;
 }
 
-
-.sellerInfoDiv{
+.sellerInfoDiv {
   margin-top: 30px;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.425); ;
-  margin-right:40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.425); ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.425);
+  margin-right: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.425);
   padding-top: 20px;
-/* margin-top: 70px */
+  /* margin-top: 70px */
 }
-.imgg{
+.imgg {
   margin-top: 10px;
   border-radius: 50%;
   width: 60px;
 }
-.SellerName{
+.SellerName {
   position: absolute;
-  top:60px;
-  left: 67px
+  top: 60px;
+  left: 67px;
 }
 
-.contact{
+.contact {
   position: absolute;
-  top:83px;
-  left: 68px ;
+  top: 83px;
+  left: 68px;
   font-size: 13px;
   color: rgb(83, 82, 82);
 }
 
-.email{
+.email {
   position: absolute;
   top: 80px;
-  left: 190px ;
+  left: 190px;
   color: rgb(155, 37, 37);
 }
-.WhatsApp{
+.WhatsApp {
   color: green;
   position: absolute;
   top: 82px;
-  left: 215px ;
+  left: 215px;
   font-size: 16px;
 }
 
-.describe{
+.describe {
   /* margin-bottom: 10px; */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.425); ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.425);
   margin-right: 40px;
 }
 
-.describe h6{
-    margin-bottom: 10px;
-
+.describe h6 {
+  margin-bottom: 10px;
 }
 
 /* .anim{
