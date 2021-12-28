@@ -5,6 +5,8 @@ import "./style.css";
 import { useSelector } from "react-redux";
 
 function InterestList() {
+  let navigate = useNavigate();
+
   const state = useSelector((state) => {
     return state;
   });
@@ -30,28 +32,30 @@ function InterestList() {
 
   const goInside = (id) => {
     console.log(id);
-    // navigate(`/profile/${id}`);
+    navigate(`/property/${id}`);
   };
 
   return (
     <div>
       {properties.length && (
         <>
-          {properties.map((ele) => {
-            return (
-              <>
-                <div className="property">
-                  <h3
-                    onClick={() => {
-                      goInside(ele._id);
-                    }}
-                  >
-                    {ele.onProperty.name}
-                  </h3>
-                </div>
-              </>
-            );
-          })}
+          <h1 className="savedHomes"> Saved Homes </h1>
+          <div className="property">
+            {properties.map((ele) => {
+              return (
+                <>
+                  <div>
+                    <img
+                      onClick={() => goInside(ele.onProperty._id)}
+                      className="propertyImgPp"
+                      src={ele.onProperty.imgArr[0]}
+                    />
+                  </div>
+                  <div></div>
+                </>
+              );
+            })}
+          </div>
         </>
       )}
     </div>

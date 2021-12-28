@@ -116,23 +116,23 @@ const Property = () => {
               </Carousel>
 
               <span className="price">{property[0].price}$</span>
-              {state.signIn.token.length && (
-            <span className="likes" onClick={like}>
-              {isLiked}
-            </span>
-          )}
+              {state.signIn.token.length ? (
+                <span className="likes" onClick={like}>
+                  {isLiked}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           {/* // img arr */}
           {/* <span className="price">{property[0].price}$</span> */}
-        
-       
 
           <div className="post2">
             <h1> {property[0].name} </h1>
             <h4>
               <div className="describe">
-                <h6 > {property[0].describe} </h6>
+                <h6> {property[0].describe} </h6>
               </div>
               <br />
               Home Highlights:
@@ -154,7 +154,7 @@ const Property = () => {
               </div>
               {state.signIn.userID !== property[0].postedBy._id && (
                 <div className="sellerInfoDiv">
-                seller info
+                  seller info
                   <div className="imgContener">
                     <img
                       className="imgg"
@@ -162,31 +162,34 @@ const Property = () => {
                       alt="img"
                     />
                   </div>
-                  <p className="SellerName"
+                  <p
+                    className="SellerName"
                     onClick={() => person(property[0].postedBy._id)}
-                    
                   >
                     {property[0].postedBy.username}
                   </p>
                   <span className="contact"> Contact seller : </span>
                   {/* WhatsApp icon */}
-                  <a className="WhatsApp"
+                  <a
+                    className="WhatsApp"
                     href={`https://wa.me/${property[0].postedBy.phonNumber}`}
                     // class="whatsapp_float"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                  < BsWhatsapp/>
+                    <BsWhatsapp />
                   </a>
-                  <a className="email" href={`mailto:${property[0].postedBy.email}`}>
+                  <a
+                    className="email"
+                    href={`mailto:${property[0].postedBy.email}`}
+                  >
                     <MdEmail />
                   </a>
                 </div>
               )}
-                 <Map location={property[0].location} />
-
-            {/* the seller cant take an appointment if its the owner  */}
-  {state.signIn.userID !== property[0].postedBy._id &&
+              <Map location={property[0].location} />
+              {/* the seller cant take an appointment if its the owner  */}
+              {state.signIn.userID !== property[0].postedBy._id &&
                 property[0].postedBy.Availability && (
                   <Scheduled
                     city={property[0].city}
@@ -196,7 +199,7 @@ const Property = () => {
                 )}
             </h4>
           </div>
-  
+
           {property.length &&
             (state.signIn.userID === property[0].postedBy._id ||
               state.signIn.role === "61c05b910cca090670f00827") && ( // admin or  property owner
@@ -211,7 +214,6 @@ const Property = () => {
                 </button>
               </div>
             )}
-
         </>
       )}
     </div>
