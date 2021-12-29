@@ -38,6 +38,7 @@ const Forget = () => {
           setEmail(e.target.value);
         }}
       />
+      <br />
       <button className="forgetBtn" onClick={restPass}>
         send email
       </button>

@@ -324,7 +324,7 @@ function Home() {
           </>
         )}
 
-      {properties.length && (
+      {properties.length ? (
         <>
           <div className="propertyy">
             {properties.map((ele) => {
@@ -364,6 +364,8 @@ function Home() {
             })}
           </div>
         </>
+      ) : (
+        <></>
       )}
     </div>
   );

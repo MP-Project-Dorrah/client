@@ -77,7 +77,7 @@ const Login = () => {
           <BsFillArrowRightCircleFill className="goIcon" />
         </button>
         <div className="already">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link className="linkk" to="/log">
             Sign up
           </Link>
