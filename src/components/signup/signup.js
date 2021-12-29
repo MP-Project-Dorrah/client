@@ -97,16 +97,23 @@ const Signup = () => {
   return (
     <>
       {!isSignUp && (
-        <>
+        <div className="signUpCom">
           <ToggleButtonGroup
             color="primary"
             value={alignment}
             exclusive
             onChange={handleChange}
           >
-            <ToggleButton value="Buyer">Buyer</ToggleButton>
-            <ToggleButton value="Seller">Seller</ToggleButton>
-            <ToggleButton value="Agent">Agent</ToggleButton>
+            <ToggleButton value="Buyer">
+              {" "}
+              <span></span> Buyer <span></span>
+            </ToggleButton>
+            <ToggleButton value="Seller">
+              <span></span>Seller <span></span>
+            </ToggleButton>
+            <ToggleButton value="Agent">
+              <span></span>Agent<span></span>
+            </ToggleButton>
           </ToggleButtonGroup>
           <div>
             <input
@@ -153,7 +160,7 @@ const Signup = () => {
               }}
             />
           </div>
-          <div>
+          <div className="cityChoice">
             <List
               component="nav"
               aria-label="Device settings"
@@ -196,6 +203,7 @@ const Signup = () => {
           </div>
           <div>
             <input
+              id="passInput"
               type="password"
               placeholder=" password"
               onChange={(e) => {
@@ -217,11 +225,12 @@ const Signup = () => {
             </>
           )}
           <button
+            className="LogBtn"
             onClick={() => {
               getUser();
             }}
           >
-            <BsFillArrowRightCircleFill />
+            <BsFillArrowRightCircleFill className="goIcon" />{" "}
           </button>
 
           <div>
@@ -230,7 +239,7 @@ const Signup = () => {
               log in
             </Link>
           </div>
-        </>
+        </div>
       )}
       {message}
       {isSignUp && (

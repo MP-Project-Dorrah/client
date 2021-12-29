@@ -1,0 +1,27 @@
+.signUpCom{
+    margin-top: 80px;
+    text-align: center;
+}
+.signUpCom input{
+    border-style: none;
+    padding: 5px;
+    /* font-size: 50px; */
+    width: 30%;
+    border-radius: 3px;
+    margin-top: 40px;
+    border-bottom: 0.5px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.397);
+}
+
+.signUpCom span{
+margin: 0 15px;
+}
+
+.cityChoice{
+margin-left: 500px;
+margin-right: 500px;
+}
+#passInput{
+    margin-top: 0;
+}

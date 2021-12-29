@@ -36,35 +36,41 @@ const Reset = () => {
 
   return (
     <div className="forgett">
-      <p className="prr"></p>
-      Code
-      <input
-        className="resetInput"
-        type="text"
-        placeholder="code"
-        onChange={(e) => {
-          setCode(e.target.value);
-        }}
-      />
-      <br />
-      New password
-      <input
-        className="resetInput"
-        type="password"
-        placeholder="new pass"
-        onChange={(e) => {
-          setNewPass(e.target.value);
-        }}
-      />
-      <br />
-      <button className="resetBtn" onClick={restPass}>
-        Reset
-      </button>
-      <br />
-      {message}
+      {!isPassReset && (
+        <>
+        <div className="forgett">
+          <p className="prr"> Code </p>
+          <input
+            className="resetInput"
+            type="text"
+            // placeholder="code"
+            onChange={(e) => {
+              setCode(e.target.value);
+            }}
+          />
+          <br />
+          New password
+          <input
+            className="resetInput"
+            type="password"
+            // placeholder="new pass"
+            onChange={(e) => {
+              setNewPass(e.target.value);
+            }}
+          />
+          <br />
+          <button className="resetBtn" onClick={restPass}>
+            Reset
+          </button>
+          <br />
+          </div>
+        </>
+      )}
+<div className="messageRContainer">
+   <h3 className="messageR">   {message} </h3> </div>
       {isPassReset && (
         <>
-          <button onClick={navLogIn}> back to log in page </button>
+          <button className="resetBtn" onClick={navLogIn}> back to log in page </button>
         </>
       )}
     </div>

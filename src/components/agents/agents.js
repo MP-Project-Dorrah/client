@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Agents = () => {
+  const [message, setMessage] = useState("");
+
   let navigate = useNavigate();
   const [allUsers, setAllUsers] = useState([]);
 
@@ -13,10 +17,16 @@ const Agents = () => {
   }, []);
 
   const getAllUsers = async () => {
+    setMessage(
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    );
     const users = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/user/allRealestateAgents`
     );
     setAllUsers(users.data);
+    setMessage("");
   };
 
   const goInside = (id) => {
@@ -41,7 +51,7 @@ const Agents = () => {
                 />
               </div>
               <h4
-                className="userName"
+                className="userNamee"
                 onClick={() => {
                   goInside(ele._id);
                 }}
@@ -51,8 +61,8 @@ const Agents = () => {
             </div>
           );
         })}
-
-      {!allUsers.length && <h2>There are no agents available at the moment </h2>}
+      <div className="message">{message} </div>
+      {/* {!allUsers.length && <h2>There are no agents available at the moment </h2>} */}
     </div>
   );
 };

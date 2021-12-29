@@ -12,12 +12,17 @@ import Map from "../map/map";
 import { MdEmail } from "react-icons/md";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Property = () => {
   let navigate = useNavigate();
   const id = useParams().id;
   const [property, setProperty] = useState([]);
   const [isLiked, setIsLiked] = useState(`${(<IoHeartSharp />)}`);
+  const [message, setMessage] = useState("");
+
+  
   const state = useSelector((state) => {
     return state;
   });
@@ -28,10 +33,14 @@ const Property = () => {
   }, []);
 
   const getProperty = async () => {
+    setMessage( <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+    <CircularProgress color="inherit" />
+  </Stack>)
     const property = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/property/oneProperty/${id}`
     );
     setProperty(property.data);
+    setMessage("")
     console.log(property.data[0].postedBy.Availability);
 
     const result = await axios.get(
@@ -87,9 +96,8 @@ const Property = () => {
   //
   return (
     <div className="contener">
-      {property && property.length && (
+      {property && property.length ?(
         <>
-          {console.log(property)}
           <div className="propertyContener">
             <div className="anim">
               <Carousel
@@ -106,7 +114,6 @@ const Property = () => {
               >
                 {property[0].imgArr &&
                   property[0].imgArr.map((ele, i) => {
-                    console.log(ele);
                     return (
                       <div className="imgContener" key={i}>
                         <img alt="img" className="propertyImges" src={ele} />
@@ -116,7 +123,7 @@ const Property = () => {
               </Carousel>
 
               <span className="price">{property[0].price}$</span>
-              {state.signIn.token.length ? (
+              {state.signIn.token.length ?  (
                 <span className="likes" onClick={like}>
                   {isLiked}
                 </span>
@@ -191,16 +198,22 @@ const Property = () => {
               {/* the seller cant take an appointment if its the owner  */}
               {state.signIn.userID !== property[0].postedBy._id &&
                 property[0].postedBy.Availability && (
-                  <Scheduled
-                    city={property[0].city}
-                    sellerId={property[0].postedBy._id}
-                    location={property[0].location}
-                  />
+                  <>
+                    {state.signIn.token.length !==0 ? (
+                      <Scheduled
+                        city={property[0].city}
+                        sellerId={property[0].postedBy._id}
+                        location={property[0].location}
+                      />
+                    ) : (
+                      <><br/></>
+                    )}
+                  </>
                 )}
             </h4>
           </div>
 
-          {property.length &&
+          {property.length ? (
             (state.signIn.userID === property[0].postedBy._id ||
               state.signIn.role === "61c05b910cca090670f00827") && ( // admin or  property owner
               <div className="deleteBtnContener">
@@ -213,9 +226,12 @@ const Property = () => {
                   Delete proprty
                 </button>
               </div>
-            )}
+            ) ):(<></>)}
         </>
-      )}
+      ) : (<></>)}
+
+
+   <div className="messageee">  {message} </div> 
     </div>
   );
 };
