@@ -69,7 +69,7 @@ export default function PaymentForm(props) {
              
             </div>
           </fieldset>
-          <button> subscribe </button>
+          <button className="subscribeBtn"> subscribe </button>
         </form>
       )}
     </>

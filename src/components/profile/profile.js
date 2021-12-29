@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
-import { RiPencilFill } from "react-icons/ri";
+import { RiPencilFill, RiDeleteBin5Fill } from "react-icons/ri";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import UseStorageProfile from "../../hocks/useStorageProfile";
 import { useNavigate } from "react-router-dom";
@@ -214,12 +214,18 @@ const Profile = () => {
   return (
     <>
       {user.length && (
-        <>
+        <div className="profileContainer">
           {/* //update photo */}
           <RiPencilFill
             className="editeImg"
             onClick={() => {
               handleOpenn();
+            }}
+          />
+          <BsPencilFill
+            className="pen"
+            onClick={() => {
+              handleOpen();
             }}
           />
           <Modal
@@ -354,15 +360,10 @@ const Profile = () => {
           </Modal>
 
           {/* disply profile */}
-          <img className="profilePage" src={user[0].img} />
+          <img className="profilePageImg" src={user[0].img} />
           <div className="profileTextContener">
             <h3 className="userName">{user[0].name} </h3>
-            <BsPencilFill
-              className="pen"
-              onClick={() => {
-                handleOpen();
-              }}
-            />
+
             <br />
             <h5>
               <span>username: </span>@{user[0].username}
@@ -381,11 +382,36 @@ const Profile = () => {
             </h5>
           </div>
 
+          {/* disply seller proprty */}
+          {state.signIn.role === "61c05b020cca090670f00821" && (
+            <div className="userPropertyContener">
+              my property
+              <br />
+              {properties.length &&
+                properties.map((ele) => {
+                  return (
+                    <>
+                      <h3
+                        className="propertyh3"
+                        onClick={() => {
+                          goInside(ele._id);
+                        }}
+                      >
+                        <img className="propertyImgP" src={ele.imgArr[0]} />
+                      </h3>
+                    </>
+                  );
+                })}
+            </div>
+          )}
+
           {/* available toggle */}
           {(state.signIn.role === "61c05b020cca090670f00821" ||
             state.signIn.role === "61c05b880cca090670f00825") && (
             <div className="available">
-              <span className="availablText"> are you available ? </span>
+              <span className="availablText">
+                are you available these days ?{" "}
+              </span>
               <ToggleButton
                 className="toggleBtn"
                 value="check"
@@ -398,6 +424,10 @@ const Profile = () => {
               </ToggleButton>
             </div>
           )}
+          <button className="deleteAccountBtn" onClick={deleteAccount}>
+            {/* Delete my account */}
+            <RiDeleteBin5Fill />
+          </button>
 
           {/* subscribe status */}
           {state.signIn.role === "61c05b020cca090670f00821" && (
@@ -455,31 +485,9 @@ const Profile = () => {
                   </div>
                 )}
               </div>
-
-              {/* disply seller proprty */}
-              <div className="userPropertyContener">
-                my property
-                <br />
-                {properties.length &&
-                  properties.map((ele) => {
-                    return (
-                      <>
-                        <h3
-                          className="propertyh3"
-                          onClick={() => {
-                            goInside(ele._id);
-                          }}
-                        >
-                          <img className="propertyImgP" src={ele.imgArr[0]} />
-                        </h3>
-                      </>
-                    );
-                  })}
-                <button onClick={deleteAccount}>Delete my account</button>
-              </div>
             </>
           )}
-        </>
+        </div>
       )}
     </>
   );

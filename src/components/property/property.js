@@ -22,7 +22,6 @@ const Property = () => {
   const [isLiked, setIsLiked] = useState(`${(<IoHeartSharp />)}`);
   const [message, setMessage] = useState("");
 
-  
   const state = useSelector((state) => {
     return state;
   });
@@ -33,14 +32,16 @@ const Property = () => {
   }, []);
 
   const getProperty = async () => {
-    setMessage( <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-    <CircularProgress color="inherit" />
-  </Stack>)
+    setMessage(
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    );
     const property = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/property/oneProperty/${id}`
     );
     setProperty(property.data);
-    setMessage("")
+    setMessage("");
     console.log(property.data[0].postedBy.Availability);
 
     const result = await axios.get(
@@ -96,7 +97,7 @@ const Property = () => {
   //
   return (
     <div className="contener">
-      {property && property.length ?(
+      {property && property.length ? (
         <>
           <div className="propertyContener">
             <div className="anim">
@@ -123,7 +124,7 @@ const Property = () => {
               </Carousel>
 
               <span className="price">{property[0].price}$</span>
-              {state.signIn.token.length ?  (
+              {state.signIn.token.length ? (
                 <span className="likes" onClick={like}>
                   {isLiked}
                 </span>
@@ -199,14 +200,16 @@ const Property = () => {
               {state.signIn.userID !== property[0].postedBy._id &&
                 property[0].postedBy.Availability && (
                   <>
-                    {state.signIn.token.length !==0 ? (
+                    {state.signIn.token.length !== 0 ? (
                       <Scheduled
                         city={property[0].city}
                         sellerId={property[0].postedBy._id}
                         location={property[0].location}
                       />
                     ) : (
-                      <><br/></>
+                      <>
+                        <br />
+                      </>
                     )}
                   </>
                 )}
@@ -226,12 +229,16 @@ const Property = () => {
                   Delete proprty
                 </button>
               </div>
-            ) ):(<></>)}
+            )
+          ) : (
+            <></>
+          )}
         </>
-      ) : (<></>)}
+      ) : (
+        <></>
+      )}
 
-
-   <div className="messageee">  {message} </div> 
+      <div className="messageee"> {message} </div>
     </div>
   );
 };
