@@ -91,7 +91,7 @@ function Map(props) {
 
   return (
     <div className="mapCom">
-      <h3> local information </h3>
+      <h3> Local information </h3>
       <button
         style={{
           backgroundColor: isSelectedMap
@@ -101,7 +101,7 @@ function Map(props) {
         }}
         onClick={getdata3}
       >
-        map
+        Map
       </button>
       <button
         style={{
@@ -112,7 +112,7 @@ function Map(props) {
         }}
         onClick={getdataa}
       >
-        resturant
+        Resturant
       </button>
       <button
         style={{
@@ -140,7 +140,10 @@ function Map(props) {
 
       {MapSort === "map" && (
         <div className="mapContainer">
-          <div style={{ height: "40vh", width: "94%", borderRadius: "50%" }}>
+          <div
+            className="mapContainer"
+            style={{ height: "40vh", width: "94%" }}
+          >
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
               defaultCenter={center}

@@ -5,23 +5,29 @@ import "./style.css";
 import { useSelector } from "react-redux";
 
 const UseStorage = (props) => {
-  const [url, setUrl] = useState([]);
-
+  const [url, setUrl] = useState("");
+  const [flag, setFlag] = useState(false)
+console.log(url,"here <=====");
   const state = useSelector((state) => {
     return state;
   });
   useEffect(() => {
+    const result = []
     props.imgP.map((ele) => {
+      console.log(ele,"ele");
       const storageRef = porjectSto.ref(ele.name);
        storageRef.put(ele).on("state_changed", async () => {
         const URL = await storageRef.getDownloadURL();
-        setUrl((prevSate) => [...prevSate, URL]);
+        result.push(URL)
       });
     });
-
+    console.log(result);
+    setUrl([...result]);
+    setFlag(true)
     // eslint-disable-next-line
   }, []);
   const postIt = async () => {
+    console.log(url);
     await axios.post(
       `${process.env.REACT_APP_BASE_URL}/property/create`,
       {
@@ -40,21 +46,22 @@ const UseStorage = (props) => {
         },
       }
     );
-    props.rerender();
-    props.handleC();
+    // props.rerender();
+    // props.handleC();
   };
 
   return (
     <>
       {url && url.length === props.imgP.length && (
         <>
-          {url.map((ele) => {
+          {/* {url.map((ele) => {
             // console.log(ele, "url ele");
             return <img className="downloadedImg" src={ele} alt="img" />;
-          })}
+          })} */}
         </>
       )}
-      {url.length === props.imgP.length ? (
+      {console.log(url.length,props.imgP.length)}
+      {flag && flag? (
         <h1>
           <button
             className="PostItt"

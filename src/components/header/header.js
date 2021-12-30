@@ -1,14 +1,20 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./style.css";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { logOut } from "../../reducers/login";
 import { useDispatch } from "react-redux";
+import { BsFillCircleFill } from "react-icons/bs";
 
 const Header = () => {
   let navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+
   const dispatchEvent = useDispatch();
+  const [selected, setSelected] = useState("home");
 
   const state = useSelector((state) => {
     return state;
@@ -24,7 +30,10 @@ const Header = () => {
     dispatchEvent(logOut(data));
     navigate(`/`);
   };
-
+  const change = (type) => {
+    setSelected(type);
+    console.log(type);
+  };
   return (
     <>
       <div className="nav">
@@ -32,13 +41,14 @@ const Header = () => {
           <ul>
             <li className="lie" id="logo">
               PERFECTVIEW
+              {/* {selected === "home" && <BsFillCircleFill className="circle" />} */}
             </li>
-            <li className="lie">
+            <li onClick={() => change("home")} className="lie">
               <Link className="link" to="/">
                 Home
               </Link>
             </li>
-            <li className="lie">
+            <li onClick={() => change("agents")} className="lie">
               <Link className="link" to="/agents">
                 Agents
               </Link>
@@ -51,20 +61,51 @@ const Header = () => {
           </ul>
         ) : (
           <ul>
-            <li className="lie"> PERFECTVIEW</li>
+            <li className="lie" id="logo">
+              {" "}
+              PERFECTVIEW
+            </li>
             <li className="lie">
-              <Link className="link" to="/">
+              <Link
+                className={splitLocation[1] === "" ? "active" : "unActive"}
+                to="/"
+              >
                 Home
+                {splitLocation[1] === "" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
             <li className="lie">
-              <Link className="link" to="/agents">
+              <Link
+                className={
+                  splitLocation[1] === "agents" ? "active" : "unActive"
+                }
+                to="/agents"
+              >
                 Agents
+                {splitLocation[1] === "agents" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
             <li className="lie">
-              <Link className="link" to="/interestList">
+              <Link
+                className={
+                  splitLocation[1] === "interestList" ? "active" : "unActive"
+                }
+                to="/interestList"
+              >
                 interst list
+                {splitLocation[1] === "interestList" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
             {/* <li className="lie"> 
@@ -73,15 +114,30 @@ const Header = () => {
               </Link>
             </li> */}
             <li className="lie">
-              <Link className="link" to="/profile">
+              <Link
+                className={
+                  splitLocation[1] === "profile" ? "active" : "unActive"
+                }
+                to="/profile"
+              >
                 Profile
+                {splitLocation[1] === "profile" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
             {state.signIn.role === "61c05b910cca090670f00827" && (
               <>
-                <li className="lie">
+                <li onClick={() => change("users")} className="lie">
                   <Link className="link" to="/users">
                     Users
+                    {splitLocation[1] === "users" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
                   </Link>
                 </li>
               </>
@@ -89,7 +145,9 @@ const Header = () => {
 
             <li className="lie">
               <span className="link" onClick={logout}>
-                <AiOutlineLogout />
+                <button className="logOutBtn">
+                  <AiOutlineLogout />
+                </button>
               </span>
             </li>
           </ul>

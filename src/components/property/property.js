@@ -143,26 +143,42 @@ const Property = () => {
                 <h6> {property[0].describe} </h6>
               </div>
               <br />
-              Home Highlights:
-              <div className="homeHighlights">
-                <div className="highlight">
-                  <span>
-                    <IoIosBed />
-                  </span>
-                  <p> {property[0].propertyHighlights.room} Rooms </p>
-                  <span className="secondChild">
-                    <FaBath />
-                  </span>
-                  <p> {property[0].propertyHighlights.bathroom} Bathrooms </p>
-                  <span className="thirdChild">
-                    <FaRulerCombined />
-                  </span>
-                  <p> {property[0].propertyHighlights.space}sqft </p>
+
+              <div>
+                <div className="homeH">
+                  <div className="relaDiv">
+                    <span className="icon1">
+                      <IoIosBed />
+                    </span>
+                    <p className="roomP">
+                      {property[0].propertyHighlights.room} Rooms{" "}
+                    </p>
+                  </div>
+
+                  <div className="relaDiv">
+                    <span className="icon2">
+                      <FaBath />
+                    </span>
+                    {/* <div className="br" > </div> */}
+                    <p className="roomP">
+                      {property[0].propertyHighlights.bathroom} Bathrooms{" "}
+                    </p>
+                  </div>
+
+                  <div className="relaDiv">
+                    <span className="icon3">
+                      <FaRulerCombined />
+                    </span>
+                    {/* <div className="br"> </div> */}
+                    <p className="roomP">
+                      {property[0].propertyHighlights.space}sqft{" "}
+                    </p>
+                  </div>
                 </div>
               </div>
               {state.signIn.userID !== property[0].postedBy._id && (
                 <div className="sellerInfoDiv">
-                  seller info
+                  Seller info
                   <div className="imgContener">
                     <img
                       className="imgg"
@@ -195,25 +211,30 @@ const Property = () => {
                   </a>
                 </div>
               )}
-              <Map location={property[0].location} />
+
               {/* the seller cant take an appointment if its the owner  */}
-              {state.signIn.userID !== property[0].postedBy._id &&
-                property[0].postedBy.Availability && (
-                  <>
-                    {state.signIn.token.length !== 0 ? (
-                      <Scheduled
-                        city={property[0].city}
-                        sellerId={property[0].postedBy._id}
-                        location={property[0].location}
-                      />
-                    ) : (
-                      <>
-                        <br />
-                      </>
-                    )}
-                  </>
-                )}
+              <div>
+                {state.signIn.userID !== property[0].postedBy._id &&
+                  property[0].postedBy.Availability && (
+                    <>
+                      {state.signIn.token.length !== 0 ? (
+                        <Scheduled
+                          city={property[0].city}
+                          sellerId={property[0].postedBy._id}
+                          location={property[0].location}
+                        />
+                      ) : (
+                        <>
+                          <br />
+                        </>
+                      )}
+                    </>
+                  )}
+              </div>
             </h4>
+          </div>
+          <div className="mapC">
+            <Map location={property[0].location} />
           </div>
 
           {property.length ? (
