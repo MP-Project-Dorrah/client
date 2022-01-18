@@ -52,7 +52,7 @@ function Home() {
   const [value, setValue] = React.useState([0, 500000]);
   const [max, setMax] = useState(500000);
   const [min, setMin] = useState(0);
-  const [img, setImages] = useState([]);
+  const [images, setImages] = useState([]);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [city, setCity] = useState("");
@@ -95,62 +95,30 @@ function Home() {
 
   return (
     <div className="homeContener">
-      <video
+      {/* <video
         className="videoInsideDec"
         autoPlay={true}
         loop={true}
         muted={true}
       >
         <source src={video} type="video/mp4" />
-      </video>
-      <div className="bggg"></div>
-      <div className="homeHeaderText">Discover a place you'll love to live</div>
-      <h1> See how Perfect View can help </h1>
+      </video> */}
       <img
-        className="secondPageB"
-        src="https://www.originaldesign.com/assets/lines-bk.png"
+        className="homePageImg"
+        src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
       />
-      <div className="secondPage">
-        <div>
-          <img
-            className="homeImges"
-            src="https://images.pexels.com/photos/7599735/pexels-photo-7599735.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-          <br />
-          <h4 className="h4Home"> Buy a Real Estate </h4>
-          <p>
-            Perfect View can match you with a house you will want to call home.
-          </p>
-        </div>
-        <div>
-          <img
-            className="homeImges"
-            src="https://images.pexels.com/photos/1181625/pexels-photo-1181625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-          <br />
-          <h4 className="h4Home"> Sell a Real Estate </h4>
-          <p>
-            Perfect View can match you with a house you will want to call home.
-          </p>
-        </div>
-        <div>
-          <img
-            className="homeImges"
-            src="https://images.pexels.com/photos/327540/pexels-photo-327540.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          />
-          <br />
-          <h4 className="h4Home"> Be an Agent </h4>
-          <p>
-            Perfect View can match you with a house you will want to call home.
-          </p>
-        </div>
-      </div>
-      <div className="thirdPage">
-        <h1> Explore homes on Perfect View </h1>
-        <br />
-        <br />
-        <br />
+      <div className="bggg"></div>
+      <div className="homeHeaderText">
+        Discover a place you'll love to live
+        <p className="homeTex">
+          Find a home from our search bar, Enter your specific location and
+          price range
+        </p>
         <div className="sortProperty">
+        <span className="sortByl">  Search by name or location </span>
+
+        <span className="sortByP">  Filter by price </span>
+
           <div>
             <input
               className="searchInput"
@@ -158,9 +126,9 @@ function Home() {
               onChange={(e) => setSearchFun(e.target.value)}
             />
           </div>
-          <div>
-            <Box sx={{ width: 300 }}>
-              <Slider
+          <div className="slider" >
+            <Box  sx={{ width: 300 }}>
+              <Slider 
                 getAriaLabel={() => "Temperature range"}
                 value={value}
                 onChange={handleChange}
@@ -178,6 +146,11 @@ function Home() {
           </div>
         </div>
       </div>
+      <img
+        className="secondPageB"
+        src="https://www.originaldesign.com/assets/lines-bk.png"
+      />
+     
       {state.signIn.role === "61c05b020cca090670f00821" &&
         state.signIn.subscribeStatus !== "unActive" && (
           <>
@@ -216,11 +189,17 @@ function Home() {
                           type="file"
                           multiple
                           onChange={(e) => {
+                            console.log(e);
+                            const result = []
                             for (let i = 0; i < e.target.files.length; i++) {
+                              console.log(e.target.files[i],"files");
                               const newImg = e.target.files[i];
+                              result.push(newImg)
+                              console.log(newImg,"newImg");
                               newImg["id"] = Math.random();
-                              setImages((prevState) => [...prevState, newImg]);
                             }
+                            console.log(result,"<<<<<");
+                            setImages([...result]);
                           }}
                         />
 
@@ -297,11 +276,11 @@ function Home() {
                       type="text"
                       placeholder="copy google map link here"
                     />
-
-                    {img.length ? (
+                    {console.log(images,"images ====")}
+                    {images.length ? (
                       <div>
                         <UseStorage
-                          imgP={img}
+                          imgP={images}
                           name={name}
                           price={price}
                           city={city}
@@ -340,25 +319,9 @@ function Home() {
                       <h4> {ele.city} </h4>
                       <button className="priceBtn"> ${ele.price}</button>
                       <br />
-
-                      {/* <span>
-                        <FaBath />
-                        {ele.propertyHighlights.bathroom}{" "}
-                      </span>
-                      <span>
-                        <IoIosBed />
-                        {ele.propertyHighlights.room}{" "}
-                      </span>
-                      <span>
-                        <FaRulerCombined />
-                        {ele.propertyHighlights.space}{" "}
-                      </span> */}
                     </div>
                   </div>
                   <div></div>
-
-                  {/* <h3 onClick={() => goInside(ele._id)}>{ele.name}</h3>
-                  <h6>{ele.city}</h6> */}
                 </>
               );
             })}

@@ -3,14 +3,18 @@
   padding: 0;
 }
 .nav {
-  background-color: rgba(0, 0, 0, 0.329);
+  background-color: rgba(0, 0, 0, 0);
   position: relative;
   z-index: 1;
+  font-family: "BenchNine", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
 }
 .lie {
   display: inline-block;
-  margin: 1% 5.5%;
+  margin: 1% 2%;
   color: white;
+  position: relative;
 }
 .lie:hover {
   cursor: pointer;
@@ -18,17 +22,67 @@
 
 #logOut {
   display: inline-block;
+  background-color: rgb(21, 194, 237);
+  font-size: 25px;
+  color: white;
+
+  transition: 0.5s ease;
 }
 #logOut:hover {
   cursor: pointer;
+  transform: scale(1.25) perspective(1px);
 }
-
+.logOutBtn {
+  background-color: rgb(21, 194, 237);
+  border-style: none;
+  padding: 3px 3px 0 3px;
+  border-radius: 10px;
+  font-size: 25px;
+  color: white;
+  margin-left: 15rem;
+  transition: 0.5s ease;
+}
+.logOutBtn:hover {
+  transform: scale(1.25) perspective(1px);
+  cursor: pointer;
+}
 .link {
   text-decoration: none;
-  color: rgb(0, 0, 0);
-  color: white;
+  color: rgb(206, 203, 203);
+  font-weight: 900;
 }
 
 #logo {
-  margin-right: 35%;
+  margin-right: 24%;
+  margin-top: 3rem;
+  font-family: "Anton", sans-serif;
+  font-size: 22px;
+  margin-left: 3.5rem;
+}
+
+.circle {
+  color: rgb(21, 194, 237);
+  font-size: 10px;
+  position: absolute;
+  left: 44%;
+  top: 100%;
+  /* margin-left: -50px;
+  margin-top: -50px; */
+  /* top: 20px;
+  right: 20px; */
+}
+
+.active {
+  color: white;
+  /* border-bottom:3px solid rgba(255, 255, 255, 0.938); */
+  position: relative;
+}
+
+.lie a {
+  text-decoration: none;
+  font-weight: 900;
+}
+.unActive {
+  color: rgb(206, 206, 206);
+  font-weight: bold;
 }
