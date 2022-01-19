@@ -1,0 +1,24 @@
+.newPostImg {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+.UploadImgesLable {
+  padding: 5px 10px;
+  border: 1px solid black;
+}
+.UploadImgesLable:hover {
+  cursor: pointer;
+}
+
+.NewPostModel {
+  text-align: center;
+  align-items: center;
+}
+.NewPostModel button {
+  display: block;
+}
+
+.imagesNames {
+  font-size: 13px;
+}
