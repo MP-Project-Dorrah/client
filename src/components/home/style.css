@@ -23,7 +23,6 @@
   background-color: rgb(20, 26, 34);
 }
 
-
 .homeHeaderText {
   /* text-align: center; */
   font-size: 90px;
@@ -36,11 +35,11 @@
   margin: 70px 0 0px 5px;
   width: 900px;
   height: 130px;
-  color:rgb(21, 194, 237); 
+  color: rgb(21, 194, 237);
   position: relative;
   background-color: rgb(255, 255, 255);
   border-radius: 15px;
-  box-shadow: 3px 81px 400px -39px rgba(173,177,179,0.91);
+  box-shadow: 3px 81px 400px -39px rgba(173, 177, 179, 0.91);
 }
 .sortProperty input::-webkit-input-placeholder {
   color: rgba(80, 79, 79, 0.808);
@@ -59,9 +58,8 @@
   background-color: rgba(255, 255, 255, 0);
   color: rgb(0, 0, 0);
   padding: 5px;
-  border-bottom: 0.5px solid  rgb(0, 0, 0);
+  border-bottom: 0.5px solid rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.397);
-
 }
 .propertyImg {
   width: 100%;
@@ -103,7 +101,6 @@
   z-index: -1;
   top: 85vh;
   transform: rotate(-5deg);
-
 }
 
 /* Parent Container */
@@ -188,21 +185,29 @@
   font-family: "Acme", sans-serif;
 }
 
-.slider{
+.slider {
   position: absolute;
-  top : 20px;
-  left:510px;
+  top: 20px;
+  left: 510px;
 }
 
-.sortByl{
+.sortByl {
   font-size: 25px;
-  position:absolute;
-  top:30px;
-  left:80px
+  position: absolute;
+  top: 30px;
+  left: 80px;
 }
-.sortByP{
+.sortByP {
   font-size: 25px;
-  position:absolute;
-  top:30px;
-  left:590px
+  position: absolute;
+  top: 30px;
+  left: 590px;
+}
+
+.newPostBtn {
+  text-align: center;
+}
+
+.newPostBtn span {
+  color: black;
 }

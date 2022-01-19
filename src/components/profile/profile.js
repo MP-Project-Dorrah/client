@@ -5,21 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import PaymentForm from "./../payment";
-import Stack from "@mui/material/Stack";
+import {Stack , ToggleButton , styled , Modal , Typography , CircularProgress , IconButton , Box} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import ToggleButton from "@mui/material/ToggleButton";
 import { BsPencilFill } from "react-icons/bs";
-import Modal from "@mui/material/Modal";
-import { styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import IconButton from "@mui/material/IconButton";
 import { RiPencilFill, RiDeleteBin5Fill } from "react-icons/ri";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import UseStorageProfile from "../../hocks/useStorageProfile";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../../reducers/login";
+import { storage } from "../../firebase";
 
 const style = {
   position: "absolute",
@@ -60,14 +53,15 @@ const Profile = () => {
   const [properties, setProperties] = useState([]);
   const [isSub, setIsSub] = useState(false);
   const [message, setMessage] = useState("");
+  const [message2, setMessage2] = useState("");
+
   const [selected, setSelected] = React.useState(false);
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
-  const [profileImg, setProfileImg] = useState("");
-
+  const [url, setUrl] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -105,16 +99,12 @@ const Profile = () => {
     );
     console.log(subscribe.data[0], "subscribe data");
     setSubscribe(subscribe.data[0]);
-    // subscribe.endDate.slice(0,10)
 
     const properties = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/property/userProperty/${state.signIn.userID}`
     );
     setProperties(properties.data);
   };
-  // let now = new Date();
-  // now.setDate(now.getDate() + 30);
-  // console.log(now , "date");
 
   const cancleSubscribe = async () => {
     console.log("cancleSubscribe");
@@ -192,6 +182,30 @@ const Profile = () => {
       setMessage("Sorry, somthing went wrong");
     }
   };
+
+  const postIt = async () => {
+    const result = await axios.put(
+      `${process.env.REACT_APP_BASE_URL}/user/updateImg`,
+      {
+        newImg: url,
+        _id: state.signIn.userID,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${state.signIn.token}`,
+        },
+      }
+    );
+    if (result.status === 200) {
+      console.log("done");
+      getUser();
+      handleClosee();
+      setMessage("");
+    } else {
+      setMessage("Sorry, somthing went wrong");
+    }
+  };
+
   const deleteAccount = async () => {
     await axios.delete(
       `${process.env.REACT_APP_BASE_URL}/user/delete/${state.signIn.userID}`,
@@ -209,6 +223,37 @@ const Profile = () => {
     };
     dispatchEvent(logOut(data));
     navigate(`/`);
+  };
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+    setMessage2("Loading...");
+    const uploadTask = storage
+      .ref(`images/${e.target.files[0].name}`)
+      .put(e.target.files[0]);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        // setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(e.target.files[0].name)
+          .getDownloadURL()
+          .then((url) => {
+            console.log(url);
+            setUrl(url);
+            setMessage2("");
+          });
+      }
+    );
+  }
   };
 
   return (
@@ -249,12 +294,8 @@ const Profile = () => {
                         accept="image/*"
                         id="icon-button-filee"
                         type="file"
-                        onChange={(e) => {
-                          /////////
-                          setProfileImg(e.target.files[0]);
-                        }}
+                        onChange={handleChange}
                       />
-
                       <IconButton
                         color="primary"
                         aria-label="upload picture"
@@ -262,19 +303,10 @@ const Profile = () => {
                       >
                         <PhotoCamera className="camICon" />
                       </IconButton>
+                      {url && <button onClick={postIt}> Update </button>}
+                      <div> {message2} </div>
                     </label>
                   </Stack>
-
-                  {profileImg && (
-                    <div>
-                      <UseStorageProfile
-                        imgP={profileImg}
-                        handleC={handleClosee}
-                        reRender={getUser}
-                        id={user[0]._id}
-                      />
-                    </div>
-                  )}
                 </Typography>
               </Box>
             </span>
@@ -433,17 +465,6 @@ const Profile = () => {
           {state.signIn.role === "61c05b020cca090670f00821" && (
             <>
               <div className="payy">
-                {/* if the seller already have a valid subscribe
-                its have to be three cases (active - cancelPending  - unactive)
-
-                first one - will show > button cancle 
-                second -   wil show  > cancle succ - your sub will 
-                third - will show > you dont have an active subscribe  > button subscribe
-
-                fisrt and second will update just on user key 
-                if the month pass wil update every key (user - subscribe - property )
-                
-                */}
                 {user[0] && user[0].subscribeStatus === "active" && (
                   <>
                     <div>

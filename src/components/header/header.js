@@ -67,7 +67,7 @@ const Header = () => {
             </li>
             <li className="lie">
               <Link
-                className={splitLocation[1] === "" ? "active" : "unActive"}
+                className={splitLocation[1] === "" ? "homeActive" : "unActive"}
                 to="/"
               >
                 Home
@@ -100,7 +100,7 @@ const Header = () => {
                 }
                 to="/interestList"
               >
-                interst list
+                Interst list
                 {splitLocation[1] === "interestList" ? (
                   <BsFillCircleFill className="circle" />
                 ) : (
