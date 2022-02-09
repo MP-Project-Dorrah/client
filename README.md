@@ -133,12 +133,9 @@ Interset list | `/profile/:room`       | User
 
 
 ## for more information
-- [ Slides. ](#slid) 
-- [ Frontend Deployed Link. ](#slid)
-- [ Backend Deployed Link. ](#slid)
+- [ Frontend Deployed Link. ](https://perfectview.netlify.app)
+- [ Backend Deployed Link. ](https://backend-perfect.herokuapp.com)
 - [ Backend Repo ](https://github.com/MP-Project-Dorrah/server)
-- [ Trello ](https://trello.com/b/bmMaTJII/mp-project-dorrah)
-
 
 
 
