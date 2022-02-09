@@ -30,10 +30,11 @@ const Forget = () => {
   };
   return (
     <div className="forgett">
+      <h2>Forget password </h2>
       <input
         className="forgetInput"
         type="text"
-        placeholder="email"
+        placeholder="Enter your email"
         onChange={(e) => {
           setEmail(e.target.value);
         }}

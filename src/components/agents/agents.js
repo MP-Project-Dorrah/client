@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Stack, CircularProgress, Rating } from "@mui/material";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import EventBusyIcon from "@mui/icons-material/EventBusy";
 
 const Agents = () => {
   const [message, setMessage] = useState("");
-
-  let navigate = useNavigate();
   const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
@@ -29,11 +27,6 @@ const Agents = () => {
     setMessage("");
   };
 
-  const goInside = (id) => {
-    console.log(id);
-    // navigate(`/profile/${id}`);
-  };
-
   return (
     <div className="usersContener">
       {allUsers &&
@@ -41,28 +34,43 @@ const Agents = () => {
           return (
             <div key={ele._id} className="userss">
               <div className="imgContener0">
-                <img
-                  className="img3"
-                  src={ele.img}
-                  alt="img"
-                  onClick={() => {
-                    goInside(ele._id);
-                  }}
-                />
+                <img className="img3" src={ele.img} alt="img" />
               </div>
-              <h4
-                className="userNamee"
-                onClick={() => {
-                  goInside(ele._id);
-                }}
-              >
-                {ele.username}
-              </h4>
+              <h4 className="userNamee">{ele.name}</h4>
+              <p className="agentCity">{ele.city}</p>
+              {ele.rateArr.length ? (
+                <div className="rating">
+                  <Rating
+                    name="read-only"
+                    value={
+                      ele.rateArr.reduce(
+                        (accumulator, curr) => accumulator + curr
+                      ) / ele.rateArr.length
+                    }
+                    sx={{ color: "black" }}
+                    readOnly
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+              <div className="commissionContainer">
+                Commission:
+                <span className="commission">
+                  {ele.realestateAgentCommission}%
+                </span>
+              </div>
+              <div>
+                {ele.Availability ? (
+                  <EventAvailableIcon color="success" />
+                ) : (
+                  <EventBusyIcon className="EventBusyIcon" />
+                )}
+              </div>
             </div>
           );
         })}
       <div className="message">{message} </div>
-      {/* {!allUsers.length && <h2>There are no agents available at the moment </h2>} */}
     </div>
   );
 };

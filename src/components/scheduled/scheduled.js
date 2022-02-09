@@ -1,15 +1,17 @@
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+  Box,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  CircularProgress,
+  Stack,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
 import "./style.css";
 
 function Scheduled(props) {
@@ -17,6 +19,8 @@ function Scheduled(props) {
   const [alignment, setAlignment] = React.useState("In-Person");
   const [day, setDay] = React.useState(1);
   const [message, setMessage] = useState("yes");
+  const [message2, setMessage2] = useState("");
+
   const [agents, setAgents] = useState([]);
   const [scheduleBtn, setScheduleBtn] = useState("Schedule a Tour");
   const [progress, setProgress] = useState("");
@@ -51,15 +55,12 @@ function Scheduled(props) {
     setAgents(agents.data);
   };
   const handleChangeAgent = (event, newAlignment) => {
-    console.log(newAlignment, "agentID");
-    console.log(props.sellerId, "sellerId");
     setAgent(newAlignment);
   };
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
   const handleChangeDay = (event, newAlignment) => {
-    console.log(newAlignment);
     setDay(newAlignment);
   };
   const handleClick = async () => {
@@ -70,160 +71,198 @@ function Scheduled(props) {
     }
   };
   const sendMessage = async () => {
-    setProgress(
-      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-        <CircularProgress color="inherit" />
-      </Stack>
-    );
-    console.log("sennnnd");
-    const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/appointment/send`,
-      {
-        sellerId: props.sellerId,
-        AgentId: agent,
-        buyerNumber: state.signIn.userNumber,
-        PropertyLocation: props.location,
-        type: alignment,
-        date: day + " " + time,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${state.signIn.token}`,
-        },
+    if (alignment && time) {
+      if (scheduleBtn === "Schedule a Tour") {
+        setProgress(
+          <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+            <CircularProgress color="inherit" />
+          </Stack>
+        );
+        const result = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/appointment/send`,
+          {
+            sellerId: props.sellerId,
+            AgentId: agent,
+            buyerNumber: state.signIn.userNumber,
+            PropertyLocation: props.location,
+            type: alignment,
+            date: day + " " + time,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${state.signIn.token}`,
+            },
+          }
+        );
+        if (result.status === 200) {
+          setScheduleBtn("Message send");
+          setMessage2("");
+          setProgress("");
+        }
       }
-    );
-    if (result.status === 200) {
-      setScheduleBtn("Message send");
-
-      setProgress("");
+    } else {
+      setMessage2("you have to fill all fields before sending");
     }
   };
 
   return (
     <div className="tourContener">
-      <br />
-      <h3> Schedule A Tour ? </h3>
-      <p className="tourType"> Tour Type</p>
-      <ToggleButtonGroup
-        color="primary"
-        value={alignment}
-        exclusive
-        onChange={handleChange}
-      >
-        <ToggleButton className="toggleBtnn" value="In-Person">
-          {" "}
-          <span> In-Person </span>
-        </ToggleButton>
-        <ToggleButton className="toggleBtnn" value="Video Chat">
-          {" "}
-          <span> Video Chat </span>
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <div className="days">
-        <ToggleButtonGroup
-          color="primary"
-          value={day}
-          exclusive
-          onChange={handleChangeDay}
-        >
-          <ToggleButton
-            value={
-              day1.toString().slice(8, 10) + " " + day1.toString().slice(4, 7)
-            }
-          >
-            <div>
-              <p>{day1.toString().slice(8, 10)} </p>
-              {/* <div className="vv"></div> */}
-              <p>{day1.toString().slice(4, 7)} </p>
-            </div>
-          </ToggleButton>
-
-          <div className="divBetween"> </div>
-          <ToggleButton
-            value={
-              day2.toString().slice(8, 10) + " " + day2.toString().slice(4, 7)
-            }
-          >
-            <div>
-              <p>{day2.toString().slice(8, 10)} </p>
-              <p>{day2.toString().slice(4, 7)} </p>
-            </div>
-          </ToggleButton>
-          <div className="divBetween"> </div>
-          <ToggleButton
-            className="toggleBtnnn"
-            value={
-              day3.toString().slice(8, 10) + " " + day3.toString().slice(4, 7)
-            }
-          >
-            <div>
-              <p>{day3.toString().slice(8, 10)} </p>
-              <p>{day3.toString().slice(4, 7)} </p>
-            </div>
-          </ToggleButton>
-          <div className="divBetween"> </div>
-          <ToggleButton
-            value={
-              day4.toString().slice(8, 10) + " " + day4.toString().slice(4, 7)
-            }
-          >
-            <div>
-              <p>{day4.toString().slice(8, 10)} </p>
-              <p>{day4.toString().slice(4, 7)} </p>
-            </div>
-          </ToggleButton>
-          <div className="divBetween"> </div>
-        </ToggleButtonGroup>
-      </div>
-      <div className="time">
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Choose a time</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={time}
-              label="Age"
-              onChange={handleChangeTime}
-            >
-              <MenuItem value="8AM">8AM</MenuItem>
-              <MenuItem value="9AM">9AM</MenuItem>
-              <MenuItem value="10AM">10AM</MenuItem>
-              <MenuItem value="11AM">11AM</MenuItem>
-              <MenuItem value="12PM">12PM</MenuItem>
-              <MenuItem value="1PM">1PM</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </div>
-      <br />
-      do you want an agent ? <span onClick={handleClick}> {message} </span>
-      <br />
-      <br />
-      {message === "no" && agents && (
+      <h3 id="tourHeader"> Schedule A Tour ? </h3>
+      {state.signIn.token.length !== 0 ? (
         <>
+          <p className="tourType"> Tour Type</p>
           <ToggleButtonGroup
             color="primary"
-            value={agent}
+            value={alignment}
             exclusive
-            onChange={handleChangeAgent}
+            onChange={handleChange}
           >
-            {agents.map((ele) => {
-              return (
-                <ToggleButton value={ele._id}>
-                  <img className="agentImg" src={ele.img} />
-                  <div> {ele.name} </div>
-                </ToggleButton>
-              );
-            })}
+            <ToggleButton className="toggleBtnn" value="In-Person">
+              <span id="spann"> In-Person </span>
+            </ToggleButton>
+            <ToggleButton className="toggleBtnn" value="Video Chat">
+              <span> Video Chat </span>
+            </ToggleButton>
           </ToggleButtonGroup>
+          <div className="days">
+            <ToggleButtonGroup
+              color="primary"
+              value={day}
+              exclusive
+              onChange={handleChangeDay}
+            >
+              <ToggleButton
+                value={
+                  day1.toString().slice(8, 10) +
+                  " " +
+                  day1.toString().slice(4, 7)
+                }
+              >
+                <div className="day">
+                  <p>{day1.toString().slice(8, 10)} </p>
+                  <p>{day1.toString().slice(4, 7)} </p>
+                </div>
+              </ToggleButton>
+
+              {/* <div className="divBetween"> </div> */}
+              <ToggleButton
+                value={
+                  day2.toString().slice(8, 10) +
+                  " " +
+                  day2.toString().slice(4, 7)
+                }
+              >
+                <div className="day">
+                  <p>{day2.toString().slice(8, 10)} </p>
+                  <p>{day2.toString().slice(4, 7)} </p>
+                </div>
+              </ToggleButton>
+              {/* <div className="divBetween"> </div> */}
+              <ToggleButton
+                className="toggleBtnnn"
+                value={
+                  day3.toString().slice(8, 10) +
+                  " " +
+                  day3.toString().slice(4, 7)
+                }
+              >
+                <div className="day">
+                  <p>{day3.toString().slice(8, 10)} </p>
+                  <p>{day3.toString().slice(4, 7)} </p>
+                </div>
+              </ToggleButton>
+              {/* <div className="divBetween"> </div> */}
+              <ToggleButton
+                value={
+                  day4.toString().slice(8, 10) +
+                  " " +
+                  day4.toString().slice(4, 7)
+                }
+              >
+                <div className="day">
+                  <p>{day4.toString().slice(8, 10)} </p>
+                  <p>{day4.toString().slice(4, 7)} </p>
+                </div>
+              </ToggleButton>
+              {/* <div className="divBetween"> </div> */}
+            </ToggleButtonGroup>
+          </div>
+          <div className="time">
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Choose a time
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={time}
+                  label="Age"
+                  onChange={handleChangeTime}
+                >
+                  <MenuItem value="8AM">8AM</MenuItem>
+                  <MenuItem value="9AM">9AM</MenuItem>
+                  <MenuItem value="10AM">10AM</MenuItem>
+                  <MenuItem value="11AM">11AM</MenuItem>
+                  <MenuItem value="12PM">12PM</MenuItem>
+                  <MenuItem value="1PM">1PM</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
+          do you want an agent ?
+          <span className="agent" onClick={handleClick}>
+            {message}
+          </span>
+          {/* <br /> */}
+          {message === "no" && (
+            <div>
+              {agents.length ? (
+                <>
+                  <ToggleButtonGroup
+                    color="primary"
+                    value={agent}
+                    exclusive
+                    onChange={handleChangeAgent}
+                  >
+                    {agents.map((ele) => {
+                      return (
+                        ele._id !== state.signIn.userID && (
+                          <ToggleButton value={ele._id} key={ele._id}>
+                            <img
+                              className="agentImg"
+                              src={ele.img}
+                              alt="profileImage"
+                            />
+                            <div> {ele.name} </div>
+                            {/* <div>{ele.realestateAgentCommission}</div> */}
+                          </ToggleButton>
+                        )
+                      );
+                    })}
+                  </ToggleButtonGroup>
+                </>
+              ) : (
+                <>
+                  Sorry, There is no available agent in your city at this moment{" "}
+                </>
+              )}
+            </div>
+          )}
+          <button
+            className={
+              scheduleBtn === "Schedule a Tour" ? "tourBtn" : "tourBtnUnactive"
+            }
+            onClick={sendMessage}
+          >
+            {scheduleBtn}
+          </button>
+          {progress}
+          <p className="alertMessage"> {message2} </p>
         </>
+      ) : (
+        <> If you want to schedule a tour, you need to sign up first</>
       )}
-      <button className="tourBtn" onClick={sendMessage}>
-        {" "}
-        {scheduleBtn}{" "}
-      </button>
-      {progress}
     </div>
   );
 }

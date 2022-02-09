@@ -1,18 +1,18 @@
 .usersContener {
-  margin: 50px 200px;
+  margin: 5% 10%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
+  font-family: "Arima Madurai", cursive;
 }
 
 .userss {
-  border: 0.5px solid rgba(192, 146, 102, 0.719);
+  border: 0.5px solid rgba(135, 186, 219, 0.719);
   border-radius: 10px;
   margin: 10px;
   padding: 20px;
   width: 200px;
-  height: 140px;
 }
 .imgContener0 {
   display: inline-block;
@@ -23,12 +23,25 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  transition: 0.5s ease;
 }
-.img3:hover {
-  cursor: pointer;
-  transform: scale(1.25) perspective(1px);
-}
+
 .userNamee {
   margin-top: 10px;
+}
+
+.rating {
+  margin: 6px 0;
+}
+.agentCity {
+  color: gray;
+}
+.commissionContainer {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+.commission {
+  font-weight: 600;
+}
+.EventBusyIcon {
+  color: brown;
 }

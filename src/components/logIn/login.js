@@ -33,11 +33,11 @@ const Login = () => {
         token: users.data.token,
         userID: users.data.result._id,
         username: users.data.result.username,
-        isSub : users.data.result.isSub,
-        userNumber : users.data.result.phonNumber
+        isSub: users.data.result.isSub,
+        userNumber: users.data.result.phonNumber,
       };
       dispatchEvent(logIn(data));
-      navigate(`/`); // profile
+      navigate("/");
     }
   };
 
@@ -65,9 +65,9 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        <h6 className="forgetPass" onClick={navForget}>
-          forget password?
-        </h6>
+        <p className="forgetPass" onClick={navForget}>
+          Forget password?
+        </p>
         <button
           className="LogBtn"
           onClick={() => {

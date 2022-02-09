@@ -18,26 +18,23 @@ export default function PaymentForm(props) {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    {console.log(elements , "elements")}
     let now2 = new Date();
+    let now = new Date();
+    console.log(now, "startDate");
 
-  let now = new Date();
-  // now.setDate(now.getDate() + 30);
-  console.log(now , "startDate");
-  // console.log(  now.setDate(now.getDate() + 30) , "endDate");
     if (!error) {
       try {
         const { id } = paymentMethod;
-        // console.log(state.signIn.userID);
+
         const response = await axios.post(
           `${process.env.REACT_APP_BASE_URL}/subscribe/payment`,
           {
             amount: 1000,
             id,
             userId: state.signIn.userID,
-            startDate :now2 , 
-            endDate :now.setDate(now.getDate() + 30),
-            paymentMethod
+            startDate: now2,
+            endDate: now.setDate(now.getDate() + 30),
+            paymentMethod,
           },
           {
             headers: {
@@ -60,18 +57,17 @@ export default function PaymentForm(props) {
   };
 
   return (
-    <>
+    <div className="cardElement">
       {!success && (
         <form onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
             <div className="FormRow">
               <CardElement />
-             
             </div>
           </fieldset>
-          <button className="subscribeBtn"> subscribe </button>
+          <button className="subscribeBtnn"> Subscribe </button>
         </form>
       )}
-    </>
+    </div>
   );
 }

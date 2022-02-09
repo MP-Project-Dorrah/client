@@ -8,7 +8,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function InterestList() {
   const [message, setMessage] = useState("");
-
   let navigate = useNavigate();
 
   const state = useSelector((state) => {
@@ -22,9 +21,11 @@ function InterestList() {
   }, []);
 
   const getAllLikedProperties = async () => {
-    setMessage( <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-    <CircularProgress color="inherit" />
-  </Stack>)
+    setMessage(
+      <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+        <CircularProgress color="inherit" />
+      </Stack>
+    );
     const Properties = await axios.get(
       `${process.env.REACT_APP_BASE_URL}/interestList/userLikes/${state.signIn.userID}`,
       {
@@ -34,12 +35,10 @@ function InterestList() {
       }
     );
     setProperties(Properties.data);
-    setMessage("")
-    console.log(Properties);
+    setMessage("");
   };
 
   const goInside = (id) => {
-    console.log(id);
     navigate(`/property/${id}`);
   };
 
@@ -51,23 +50,22 @@ function InterestList() {
           <div className="property">
             {properties.map((ele) => {
               return (
-                <>
-                  <div>
-                    <img
-                      onClick={() => goInside(ele.onProperty._id)}
-                      className="propertyImgPp"
-                      src={ele.onProperty.imgArr[0]}
-                    />
-                  </div>
-                  <div></div>
-                </>
+                <div key={ele._id}>
+                  <img
+                    onClick={() => goInside(ele.onProperty._id)}
+                    className="propertyImgPp"
+                    src={ele.onProperty.imgArr[0]}
+                    alt="house"
+                  />
+                </div>
               );
             })}
           </div>
         </>
-      ) :(<></>)}
-         <div className="messageee">  {message} </div> 
-
+      ) : (
+        <></>
+      )}
+      <div className="message"> {message} </div>
     </div>
   );
 }

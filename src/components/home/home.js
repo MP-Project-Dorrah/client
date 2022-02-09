@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Slider, styled } from "@mui/material";
+import { Box, Slider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 import { useSelector } from "react-redux";
-import video from "./../../videos/video.mp4";
-import { grey } from "@mui/material/colors";
 import NewProperty from "../newProperty";
-
-const primary = grey[50];
 
 function valuetext(value) {
   return `${value}°C`;
@@ -58,32 +54,27 @@ function Home() {
   };
 
   return (
-    <div className="homeContener">
-      {/* <video
-        className="videoInsideDec"
-        autoPlay={true}
-        loop={true}
-        muted={true}
-      >
-        <source src={video} type="video/mp4" />
-      </video> */}
-      <img
-        className="homePageImg"
-        src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      />
+    <>
       <div className="bggg"></div>
-      <div className="homeHeaderText">
-        Discover a place you'll love to live
-        <p className="homeTex">
-          Find a home from our search bar, Enter your specific location and
-          price range
-        </p>
-        <div className="sortProperty">
-          <span className="sortByl"> Search by name or location </span>
+      <div className="homeContener">
+        <div id="firstD">
+          <p className="homeText">Discover a place you'll love to live </p>
+          <p className="homeTex">
+            Find a home from our search bar, Enter your specific location and
+            price range
+          </p>
+        </div>
+        <div id="second">
+          <img
+            className="homePageImg"
+            src="https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            alt="building"
+          />
+        </div>
+        <div id="sortProperty">
+          <div id="searchByLocationContainer">
+            <p className="sortByl"> Search by name or location </p>
 
-          <span className="sortByP"> Filter by price </span>
-
-          <div>
             <input
               className="searchInput"
               placeholder="searh"
@@ -91,7 +82,8 @@ function Home() {
             />
           </div>
           <div className="slider">
-            <Box sx={{ width: 300 }}>
+            <p className="sortByP"> Filter by price </p>
+            <Box className="sliderBox" sx={{}}>
               <Slider
                 getAriaLabel={() => "Temperature range"}
                 value={value}
@@ -104,52 +96,50 @@ function Home() {
                 sx={{
                   color: "black",
                 }}
-                // color="secondary"
               />
             </Box>
           </div>
         </div>
-      </div>
-      <img
-        className="secondPageB"
-        src="https://www.originaldesign.com/assets/lines-bk.png"
-      />
+        {state.signIn.role === "61c05b020cca090670f00821" &&
+          state.signIn.subscribeStatus !== "unActive" && (
+            <>
+              <NewProperty rerender={getAllProperties} />
+            </>
+          )}
 
-      {state.signIn.role === "61c05b020cca090670f00821" &&
-        state.signIn.subscribeStatus !== "unActive" && (
-          <>
-            <NewProperty rerender={getAllProperties} />
-          </>
-        )}
-
-      {properties.length ? (
-        <>
-          <div className="propertyy">
-            {properties.map((ele) => {
-              return (
-                <>
-                  <div
-                    className="content_img"
-                    onClick={() => goInside(ele._id)}
-                  >
-                    <img className="propertyImg" src={ele.imgArr[0]} />
-                    <div className="spanDev">
-                      <h2 className="hoverH3"> {ele.name} </h2>
-                      <h4> {ele.city} </h4>
-                      <button className="priceBtn"> ${ele.price}</button>
-                      <br />
+        <div id="properties">
+          {properties.length ? (
+            <>
+              <div className="propertyy">
+                {properties.map((ele) => {
+                  return (
+                    <div
+                      key={ele._id}
+                      className="content_img"
+                      onClick={() => goInside(ele._id)}
+                    >
+                      <img
+                        className="propertyImg"
+                        src={ele.imgArr[0]}
+                        alt="house"
+                      />
+                      <div className="spanDev">
+                        <h2 className="hoverH3"> {ele.name} </h2>
+                        <h4> {ele.city} </h4>
+                        <button className="priceBtn"> ${ele.price}</button>
+                        <br />
+                      </div>
                     </div>
-                  </div>
-                  <div></div>
-                </>
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -19,7 +19,9 @@
 .lie:hover {
   cursor: pointer;
 }
-
+.logoUnActive {
+  display: inline-block;
+}
 #logOut {
   display: inline-block;
   background-color: rgb(21, 194, 237);
@@ -37,9 +39,8 @@
   border-style: none;
   padding: 3px 3px 0 3px;
   border-radius: 10px;
-  font-size: 25px;
+  font-size: 24px;
   color: white;
-  margin-left: 15rem;
   transition: 0.5s ease;
 }
 .logOutBtn:hover {
@@ -57,30 +58,26 @@
   margin-top: 3rem;
   font-family: "Anton", sans-serif;
   font-size: 22px;
-  margin-left: 3.5rem;
+  margin-left: 5%;
 }
-
+#logOutLi {
+  margin-left: 24%;
+}
 .circle {
   color: rgb(21, 194, 237);
   font-size: 10px;
   position: absolute;
   left: 44%;
   top: 100%;
-  /* margin-left: -50px;
-  margin-top: -50px; */
-  /* top: 20px;
-  right: 20px; */
 }
 
 .active {
   color: black;
-  /* border-bottom:3px solid rgba(255, 255, 255, 0.938); */
   position: relative;
 }
-.homeActive{
+.homeActive {
   color: white;
-  /* border-bottom:3px solid rgba(255, 255, 255, 0.938); */
-  position: relative; 
+  position: relative;
 }
 
 .lie a {
@@ -90,4 +87,21 @@
 .unActive {
   color: rgb(206, 206, 206);
   font-weight: bold;
+}
+
+@media all and (max-width: 1200px) {
+  #logo {
+    display: block;
+    margin: 2% 0;
+  }
+  .nav {
+    text-align: center;
+  }
+  #logOutLi {
+    display: block;
+    margin: 0;
+  }
+  .logOutBtn {
+    font-size: 14px;
+  }
 }

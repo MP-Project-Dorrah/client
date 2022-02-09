@@ -1,34 +1,54 @@
 .forgetInput {
   border-style: none;
   padding: 5px;
-  font-size: 40px;
-  width: 30%;
+  font-size: 30px;
+  width: 70%;
   border-radius: 3px;
-  margin-top: 200px;
+  margin-top: 10%;
   border-bottom: 0.5px solid rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.397);
+  font-family: "Arima Madurai", cursive;
 }
 
 .forgetBtn {
   margin-top: 30px;
   border-style: none;
-  background-color: rgba(192, 146, 102, 0.719);
+  background-color: rgba(21, 194, 237, 0.514);
   color: white;
   padding: 10px;
   font-size: 30px;
   border-radius: 5px;
   margin-bottom: 10px;
   transition: 0.5s ease;
+  font-family: "Arima Madurai", cursive;
 }
 .forgetBtn:hover {
   transform: scale(1.25) perspective(1px);
   cursor: pointer;
+  background-color: rgb(21, 194, 237);
 }
 .forgett {
-text-align: center;
+  text-align: center;
+  box-shadow: 0px 0px 28px -1px rgba(154, 172, 182, 0.51);
+  margin: 10% 30%;
+  border-radius: 20px;
+  padding: 4% 0;
+  font-family: "Arima Madurai", cursive;
 }
-.message{
+.message {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+}
+@media all and (max-width: 750px) {
+  .forgett {
+    margin: 15% 15%;
+  }
+  .forgetInput,
+  .forgetBtn {
+    font-size: 20px;
+  }
+  .forgett h2 {
+    font-size: 25px;
+  }
 }

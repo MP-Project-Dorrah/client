@@ -1,62 +1,87 @@
 .tourType {
   color: gray;
-  margin-top: 3px;
+  margin-top: 4px;
   margin-bottom: 3px;
   font-size: 17px;
 }
 .tourContener {
-  margin-top: 20px;
-  /* margin-left: 105px; */
-  margin-right: 270px;
-  /* text-align: center; */
-  /* align-items: center; */
+  margin-top: 1%;
 }
-.toggleBtnn {
-  border-radius: 50px;
-}
+
 .toggleBtnn span {
-  padding: 0 12.7px;
+  padding: 0 16px;
+}
+
+.day {
+  padding: 0 9.7px;
 }
 .days {
-  margin-top: 5px;
-}
-.days div {
-  margin-top: 10px;
+  margin-top: 2%;
 }
 
-.divBetween {
-  margin-right: 26px;
-  /* border-ri: 1px solid rgba(0, 0, 0, 0.425); ; */
-}
-.toggleBtnnn {
-  border-left: 1px solid rgba(0, 0, 0, 0.425);
-}
 .time {
-  margin-top: 12px;
+  margin: 12px 52% 2% 0;
 }
-
+.agent {
+  display: inline-block;
+  margin-bottom: 2%;
+  margin-left: 1%;
+}
+.agent:hover {
+  cursor: pointer;
+}
 .agentImg {
   border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-right: 5px;
 }
-
+.tourBtnUnactive {
+  display: block;
+  border-style: none;
+  background-color: rgba(104, 101, 101, 0.075);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  padding: 7px 15px;
+  border-radius: 10px;
+  font-size: 22px;
+  transition: 0.5s ease;
+  margin: 10px 0 10px 50px;
+}
+#tourHeader {
+  margin-top: 0;
+}
 .tourBtn {
+  display: block;
   border-style: none;
   background-color: rgba(233, 207, 207, 0.192);
   border: 1px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   padding: 7px 15px;
   border-radius: 10px;
-  margin-left: 50px;
   font-size: 22px;
   transition: 0.5s ease;
-  margin-top: 10px;
-  margin-bottom: 350px;
+  margin: 10px 0 10px 50px;
 }
 
 .tourBtn:hover {
   transform: scale(1.25) perspective(1px);
   cursor: pointer;
+}
+.alertMessage {
+  color: red;
+}
+@media all and (max-width: 550px) {
+  .toggleBtnn span {
+    font-size: 13px;
+    padding: 0;
+  }
+  .tourBtnUnactive {
+    font-size: 12px;
+    padding: 3px;
+  }
+  .tourBtn {
+    font-size: 12px;
+    padding: 3px;
+  }
 }

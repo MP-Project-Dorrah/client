@@ -4,7 +4,7 @@
 }
 
 .mapppp {
-  margin-top: 20px;
+  margin-top: 1%;
 }
 .mapContainer h3 {
   margin-bottom: 10px;
@@ -17,4 +17,12 @@
 
 .mapCom button:hover {
   cursor: pointer;
+}
+#localInfo {
+  margin-top: 0;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 100%;
 }

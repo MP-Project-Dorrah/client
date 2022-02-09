@@ -1,10 +1,6 @@
-/* .property{
-    border :  1px solid rgba(0, 0, 0, 0.938);
-} */
-
 .propertyImgPp {
-  width: 500px;
-  height: 500px;
+  width: 30vw;
+  height: 30vw;
   border-radius: 10%;
   transition: 0.5s ease;
 }
@@ -16,7 +12,6 @@
 
 .property {
   margin-top: 20px;
-  margin-left: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -28,4 +23,11 @@
 .savedHomes {
   text-align: center;
   margin-top: 30px;
+  font-family: "Arima Madurai", cursive;
+  font-weight: bolder;
+}
+@media all and (max-width: 500px) {
+  .savedHomes {
+    font-size: 25px;
+  }
 }

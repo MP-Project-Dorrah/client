@@ -1,140 +1,118 @@
-.profilePageImg {
-  border-radius: 10px;
-  margin: 30px 0 0 13px;
-  width: 50%;
-}
-
-.profileTextContener {
+.profileContainer {
+  border-radius: 15px;
+  margin: 5% 10%;
   position: relative;
-  display: inline-block;
-  vertical-align: top;
-  margin: 50px 30px;
-  /* background-color: rgba(126, 94, 93, 0.116); */
-  padding: 10px 50px;
+  box-shadow: 0px 0px 28px -1px rgba(154, 172, 182, 0.51);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: "Arima Madurai", cursive;
+}
+.profileContainer > div {
+  margin: 2%;
+  width: 45%;
+}
+.profilePageImg {
+  border-radius: 13px;
+  width: 100%;
+  height: 100%;
+}
+.editHover:hover {
+  visibility: visible;
+  opacity: 0.6;
+}
+.firstCont {
+  position: relative;
+}
+.editHover {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  top: 0;
   border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
 }
 
-.userName {
-  font-size: 60px;
-  margin-bottom: 20px;
-  display: inline-block;
+.editeImg {
+  font-size: 40px;
+  font-weight: 100;
+  color: black;
+  position: absolute;
+  top: 46%;
+  left: 46%;
 }
-.profileTextContener h5 {
+.editHover:hover {
+  cursor: pointer;
+}
+
+.camICon {
+  color: black;
+  margin: 5px 55px 20px;
+}
+.updateProfileBtn {
+  margin-top: 30px;
+  font-size: 22px;
+  border-style: none;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.404);
+  color: white;
+  transition: 0.5s ease;
+}
+.updateProfileBtn:hover {
+  background-color: black;
+  transform: scale(1.25) perspective(1px);
+  cursor: pointer;
+}
+.box {
+  border-radius: 20px;
+}
+
+.editProfile {
+  width: 100%;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+.secondCont {
+  position: relative;
+  padding-top: 5%;
+}
+
+.secondCont h5 {
   font-size: 23px;
   margin-bottom: 10px;
   color: rgba(61, 61, 61, 0.904);
 }
-.profileTextContener h5 span {
+.secondCont h5 span {
   font-size: 24px;
   font-weight: 900;
   color: black;
 }
 
-.pen {
-  font-size: 22px;
-  margin-left: 40px;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  transition: 0.5s ease;
-}
-
-.pen:hover {
-  cursor: pointer;
-  transform: scale(1.25) perspective(1px);
-}
-
-.updateUserData input {
-  border-style: none;
-  padding: 5px;
-  border-radius: 3px;
-  border-bottom: 0.5px solid rgb(0, 0, 0);
-  color: rgba(0, 0, 0, 0.658);
-  background-color: rgba(0, 0, 0, 0);
-  width: 300px;
-}
-
-.modal {
-  align-items: center;
-  text-align: center;
-}
-
-.modelDes {
-  margin-top: 30px;
-  text-align: left;
-  margin-left: 48px;
-  font-size: 25px;
-}
-.submitBtn {
-  margin-top: 50px;
-  padding: 12px 20px;
-  border-radius: 7px;
-  border: none;
-  transition: 0.5s ease;
-  background: rgb(7, 7, 7);
-  color: white;
-  text-align: center;
-  font-weight: bold;
-}
-.submitBtn:hover {
-  cursor: pointer;
-  transform: scale(1.25) perspective(1px);
-}
-
-.profileContainer {
-  margin: 50px 150px;
-  padding: 10px;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0px 0px 28px -1px rgba(112, 103, 103, 0.51);
-}
-
-.userPropertyContener {
-  position: absolute;
-  left: 680px;
-  right: 0px;
-  top: 320px;
-  font-size: 30px;
-}
-
-.propertyImgP {
-  width: 120px;
-  height: 120px;
-  border-radius: 7%;
-}
-.propertyh3 {
+.userName {
+  font-size: 60px;
+  margin-bottom: 3%;
   display: inline-block;
-  margin-right: 10px;
-  margin-top: 7px;
 }
-.propertyImgP:hover {
-  cursor: pointer;
-}
-
-.available {
-  margin: 15px 0 0 35px;
-  font-size: 25px;
-}
-.availablText {
-  margin-right: 10px;
-}
-
-.payy {
-  /* background-color: rgba(131, 95, 95, 0.164); */
-  position: absolute;
-  top: 510px;
-  left: 680px;
-  right: 50px;
-  /* font-size: 25px; */
-  padding: 10px 0px;
-  border-radius: 10px;
-  /* text-align: center; */
-}
-
-.subscribeBtn {
-  margin-top: 10px;
-  padding: 10px 13px;
+.activeSubscribe {
+  font-weight: 500;
+  background-color: rgba(136, 185, 145, 0.582);
+  margin-left: 5px;
   border-radius: 5px;
+  padding: 0 5px;
+}
+
+.subscribeStatus {
+  display: inline-block;
+}
+.subscribeBtn {
+  padding: 5px 5px;
+  border-radius: 5px;
+  margin-left: 5px;
   border: none;
   transition: 0.5s ease;
   background: rgb(7, 7, 7);
@@ -144,13 +122,48 @@
   transition: 0.5s ease;
 }
 .subscribeBtn:hover {
-  transform: scale(1.25) perspective(1px);
+  transform: scale(1.15) perspective(1px);
   cursor: pointer;
 }
+.activeSubscribeP {
+  display: inline-block;
+}
+
+.subscribeBtnn {
+  display: block;
+  padding: 5px 5px;
+  border-radius: 5px;
+  margin: 10px 0 0;
+  border: none;
+  transition: 0.5s ease;
+  background: rgb(7, 7, 7);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.5s ease;
+}
+.cardElement {
+  margin-top: 5px;
+}
+.subscribeBtnn:hover {
+  transform: scale(1.15) perspective(1px);
+  cursor: pointer;
+}
+.unActiveSubscribe {
+  font-weight: 500;
+  background-color: rgba(185, 136, 136, 0.582);
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+.availablText {
+  margin-right: 10px;
+}
+
 .deleteAccountBtn {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 5px;
   margin: 20px;
   border-style: none;
   background-color: rgba(255, 0, 0, 0);
@@ -161,115 +174,90 @@
   transform: scale(1.25) perspective(1px);
   cursor: pointer;
 }
-.subscribeStatus {
-  margin-bottom: 10px;
+.homeImage {
+  width: 100px;
+  height: 100px;
+}
+.propertiContainer {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.editeImg {
-  opacity: 0;
-  font-size: 40px;
-  position: absolute;
-  top: 40px;
-  left: 23px;
-  font-weight: 100;
-  color: black;
-  z-index: 2;
-  padding: 260px 260px;
-  border-radius: 10px;
-  background-color: rgba(128, 128, 128, 0.342);
-}
-
-.editeImg:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-/* 
-.editeImg {
-  opacity: 0;
-  font-size: 40px;
-  position: absolute;
-  top: 54px;
-  left: 0px;
-  font-weight: 100;
-  color: black;
-  z-index: 2;
-  padding: 300px 245px;
-  border-bottom-right-radius: 11%;
-  background-color: rgba(128, 128, 128, 0.342);
-}
-
-.editeImg:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.lable {
-  position: absolute;
-}
-
-.camICon {
-  color: black;
-  margin-left: 35px;
-  font-size: 60px;
-}
-
-.box {
-  border-radius: 10px;
-}
-
-.available {
-  position: absolute;
-  top: 420px;
-  left: 620px;
-  font-size: 25px;
-}
-.availablText {
-  margin-right: 10px;
-}
-
-.payy {
-  background-color: rgba(131, 95, 95, 0.164);
-  position: absolute;
-  top: 510px;
-  left: 620px;
-  font-size: 25px;
-  padding: 10px 70px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.subscribeBtn {
-  margin-top: 10px;
-  padding: 12px 20px;
-  border-radius: 7px;
-  border: none;
-  transition: 0.5s ease;
-  background: rgb(7, 7, 7);
-  color: white;
-  text-align: center;
-  font-weight: bold;
-}
-.userPropertyContener {
-  position: absolute;
-  left: 620px;
-  top: 670px;
-  font-size: 30px;
-}
-
-.propertyImgP {
-  width: 200px;
-  height: 200px;
-  border-radius: 7%;
-}
-.propertyh3 {
-  display: inline-block;
-  margin-right: 10px;
+.properImg {
+  width: 150px;
+  height: 150px;
+  margin-right: 8px;
   margin-top: 7px;
+  border-radius: 5px;
+  transition: 0.5s ease;
 }
-.propertyImgP:hover {
+.properImg:hover {
+  transform: scale(1.05) perspective(1px);
   cursor: pointer;
 }
-.subscribeStatus {
-    margin-bottom: 10px;
-} */
+@media all and (max-width: 1000px) {
+  .profileContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profileContainer > div {
+    width: 90%;
+  }
+  .firstCont {
+    align-items: center;
+    text-align: center;
+  }
+  .firstCont {
+    padding-top: 40px;
+  }
+  .editProfile {
+    padding-top: 25px;
+  }
+  .toggleBtn {
+    width: 25px;
+    height: 25px;
+    margin-left: 30px;
+  }
+}
+@media all and (max-width: 650px) {
+  .userName {
+    font-size: 37px;
+  }
+  .secondCont h5 {
+    font-size: 17px;
+  }
+  .secondCont h5 span {
+    font-size: 18px;
+  }
+  .subscribeBtn {
+    display: block;
+    margin-left: 0;
+  }
+  #subscribeContainer {
+    margin-bottom: 50px;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .userName {
+    font-size: 30px;
+  }
+  .secondCont h5 {
+    font-size: 13px;
+  }
+  .secondCont h5 span {
+    font-size: 15px;
+  }
+  .availablText,
+  .activeSubscribeP {
+    font-size: 15px;
+  }
+  .PropertiesH4,
+  .subscribeStatus {
+    font-size: 18px;
+  }
+  .properImg {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,0 +1,17 @@
+.pen {
+  font-size: 22px;
+  transition: 0.5s ease;
+  margin-right: 0;
+}
+
+.pen:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+
+@media all and (max-width: 650px) {
+  .pen {
+    margin-right: 3%;
+    font-size: 18px;
+  }
+}

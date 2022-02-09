@@ -4,7 +4,7 @@ const initialState = {
   userID: "",
   username: "",
   isSub: false,
-  userNumber : 0
+  userNumber: 0,
 };
 
 const signIn = (state = initialState, action) => {
@@ -12,18 +12,25 @@ const signIn = (state = initialState, action) => {
 
   switch (type) {
     case "LOGIN":
-      const { role, token, userID, username , isSub , userNumber} = payload;
+      const { role, token, userID, username, isSub, userNumber } = payload;
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("userID", userID);
       localStorage.setItem("username", username);
       localStorage.setItem("isSub", isSub); ///////update LS
       localStorage.setItem("userNumber", userNumber);
-      return { role, token, userID, username, isSub , userNumber };
+      return { role, token, userID, username, isSub, userNumber };
 
     case "LOGOUT":
       localStorage.clear();
-      return { role: "", token: "", userID: "", username: "", isSub: false , userNumber:0};
+      return {
+        role: "",
+        token: "",
+        userID: "",
+        username: "",
+        isSub: false,
+        userNumber: 0,
+      };
 
     default:
       const localToken = localStorage.getItem("token");
@@ -39,7 +46,7 @@ const signIn = (state = initialState, action) => {
           userID: localUserId,
           username: localUsername,
           isSub: localIsSub,
-          userNumber : localNumber
+          userNumber: localNumber,
         };
       }
       return state;

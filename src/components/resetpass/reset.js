@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import "./style.css";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Stack, CircularProgress } from "@mui/material";
 
 const Reset = () => {
   let navigate = useNavigate();
@@ -17,7 +16,7 @@ const Reset = () => {
       <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
         <CircularProgress color="inherit" />
       </Stack>
-    ); //Progress indicators
+    );
     const result = await axios.put(
       `${process.env.REACT_APP_BASE_URL}/user/resetPassword`,
       { resetLink: code, newPassword: newPass }
@@ -38,22 +37,20 @@ const Reset = () => {
     <div className="forgett">
       {!isPassReset && (
         <>
-        <div className="forgett">
-          <p className="prr"> Code </p>
+          <h2 className="resetHeader">Reset password</h2>
           <input
             className="resetInput"
             type="text"
-            // placeholder="code"
+            placeholder="Enter the code"
             onChange={(e) => {
               setCode(e.target.value);
             }}
           />
           <br />
-          New password
           <input
             className="resetInput"
             type="password"
-            // placeholder="new pass"
+            placeholder="Enter your new password"
             onChange={(e) => {
               setNewPass(e.target.value);
             }}
@@ -63,14 +60,16 @@ const Reset = () => {
             Reset
           </button>
           <br />
-          </div>
         </>
       )}
-<div className="messageRContainer">
-   <h3 className="messageR">   {message} </h3> </div>
+      <div className="messageRContainer">
+        <h3 className="messageR"> {message} </h3>
+      </div>
       {isPassReset && (
         <>
-          <button className="resetBtn" onClick={navLogIn}> back to log in page </button>
+          <button className="resetBtn" onClick={navLogIn}>
+            back to log in page
+          </button>
         </>
       )}
     </div>
