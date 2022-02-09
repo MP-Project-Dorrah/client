@@ -9,6 +9,43 @@
   transform: scale(1.25) perspective(1px);
 }
 
+.updateUserData input {
+  border-style: none;
+  padding: 5px;
+  border-radius: 3px;
+  border-bottom: 0.5px solid rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.658);
+  background-color: rgba(0, 0, 0, 0);
+  width: 300px;
+}
+
+.modal {
+  align-items: center;
+  text-align: center;
+}
+
+.modelDes {
+  margin-top: 30px;
+  text-align: left;
+  margin-left: 48px;
+  font-size: 25px;
+}
+.submitBtn {
+  margin-top: 50px;
+  padding: 12px 20px;
+  border-radius: 7px;
+  border: none;
+  transition: 0.5s ease;
+  background: rgb(7, 7, 7);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.submitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
+}
+
 @media all and (max-width: 650px) {
   .pen {
     margin-right: 3%;
