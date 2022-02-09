@@ -14,22 +14,20 @@ function Map(props) {
   const [isSelectedMap, setIsSelectedMap] = useState(true);
   const [isSelectedGym, setIsSelectedGym] = useState(false);
 
-  // console.log(props.location);
   const newMap = props.location.slice(
     props.location.indexOf("@") + 1,
     props.location.indexOf(",")
   );
-  console.log(newMap);
 
   const newMap2 = props.location.slice(
     props.location.indexOf(",") + 1,
     props.location.indexOf("data")
   );
   const newMap22 = newMap2.slice(0, newMap2.length - 5);
-  console.log(newMap22);
 
   useEffect(() => {
     getdata();
+    // eslint-disable-next-line
   }, [MapSort]);
 
   const getdata = async () => {
@@ -44,13 +42,11 @@ function Map(props) {
         }
       );
       setMapResult(result.data.results);
-      console.log("Map", result.data.results);
     } catch (error) {
       console.log("map error", error);
     }
   };
 
-  // console.log(newMap22);
   const center = {
     lat: Number(newMap),
     lng: Number(newMap22),
@@ -91,7 +87,7 @@ function Map(props) {
 
   return (
     <div className="mapCom">
-      <h3> Local information </h3>
+      <h3 id="localInfo"> Local information </h3>
       <button
         style={{
           backgroundColor: isSelectedMap
@@ -161,35 +157,39 @@ function Map(props) {
         </div>
       )}
 
-      {MapResult.length && MapSort !== "map" && (
-        <div className="mapContainer">
-          <div style={{ height: "40vh", width: "94%", borderRadius: "50%" }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
-              defaultCenter={center}
-              defaultZoom={11}
-              yesIWantToUseGoogleMapApiInternals
-              onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-            >
-              {MapResult.map((ele) => {
-                console.log(ele.geometry.location.lat);
-                console.log(ele.geometry.location.lng);
-                return (
-                  <AnyReactComponent
-                    lat={ele.geometry.location.lat}
-                    lng={ele.geometry.location.lng}
-                    text={
-                      <>
-                        <FaMapMarkerAlt className="mapIcon" />{" "}
-                        <h3> {ele.name}</h3>{" "}
-                      </>
-                    }
-                  />
-                );
-              })}
-            </GoogleMapReact>
+      {MapResult.length ? (
+        MapSort !== "map" && (
+          <div className="mapContainer">
+            <div style={{ height: "40vh", width: "94%", borderRadius: "50%" }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
+                defaultCenter={center}
+                defaultZoom={11}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={({ map, maps }) =>
+                  handleApiLoaded(map, maps)
+                }
+              >
+                {MapResult.map((ele) => {
+                  return (
+                    <AnyReactComponent
+                      lat={ele.geometry.location.lat}
+                      lng={ele.geometry.location.lng}
+                      text={
+                        <>
+                          <FaMapMarkerAlt className="mapIcon" />{" "}
+                          <h3> {ele.name}</h3>{" "}
+                        </>
+                      }
+                    />
+                  );
+                })}
+              </GoogleMapReact>
+            </div>
           </div>
-        </div>
+        )
+      ) : (
+        <div>it's looks like there is no {MapSort}s in this area </div>
       )}
     </div>
   );

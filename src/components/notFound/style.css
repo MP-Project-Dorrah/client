@@ -1,0 +1,39 @@
+.notFound {
+  margin-top: 200px;
+  font-size: 100px;
+  margin-bottom: 40px;
+  font-family: "Arima Madurai", cursive;
+}
+
+.notFoundLink {
+  color: white;
+}
+
+.notfoundBtn {
+  border-style: none;
+  background-color: rgba(21, 194, 237, 0.637);
+  color: white;
+  padding: 10px;
+  transition: 0.5s ease;
+  border-radius: 15px;
+  font-size: 23px;
+  font-size: 40px;
+  font-family: "Arima Madurai", cursive;
+}
+
+.notfoundBtn:hover {
+  transform: scale(1.25) perspective(1px);
+  background-color: rgb(21, 194, 237);
+}
+.notFoundC {
+  text-align: center;
+}
+
+@media all and (max-width: 800px) {
+  .notFound {
+    font-size: 40px;
+  }
+  .notfoundBtn {
+    font-size: 30px;
+  }
+}

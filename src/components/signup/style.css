@@ -1,27 +1,57 @@
-.signUpCom{
-    margin-top: 80px;
-    text-align: center;
+.signUpCom {
+  text-align: center;
+  box-shadow: 0px 0px 28px -1px rgba(154, 172, 182, 0.51);
+  margin: 5% 25%;
+  padding: 3%;
+  border-radius: 20px;
+  font-family: "Arima Madurai", cursive;
 }
-.signUpCom input{
-    border-style: none;
-    padding: 5px;
-    /* font-size: 50px; */
-    width: 30%;
-    border-radius: 3px;
-    margin-top: 40px;
-    border-bottom: 0.5px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.397);
+.signUpCom input {
+  border-style: none;
+  padding: 5px;
+  /* font-size: 50px; */
+  width: 70%;
+  border-radius: 3px;
+  margin-top: 40px;
+  border-bottom: 0.5px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.397);
+  font-family: "Arima Madurai", cursive;
+}
+.signUpCom h2 {
+  margin-bottom: 10%;
+}
+.signUpCom span {
+  margin: 0 15px;
+}
+.LogBtn2 {
+  margin-top: 3%;
+  color: rgb(0, 0, 0);
+  padding: 6px 20px;
+  border-radius: 7px;
+  border: none;
+  transition: 0.5s ease;
+  background: rgba(255, 255, 255, 0);
+  list-style: none;
+  text-align: center;
+  font-weight: bold;
 }
 
-.signUpCom span{
-margin: 0 15px;
+.LogBtn2:hover {
+  cursor: pointer;
+  transform: scale(1.25) perspective(1px);
 }
-
-.cityChoice{
-margin-left: 500px;
-margin-right: 500px;
+.cityChoice {
+  margin: 0 14%;
 }
-#passInput{
-    margin-top: 0;
+#passInput {
+  margin-top: 0;
+}
+@media all and (max-width: 1000px) {
+  .ToggleButtonGroup span {
+    font-size: 10px;
+  }
+  .signUpCom {
+    margin: 5% 10%;
+  }
 }

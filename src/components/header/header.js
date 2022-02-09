@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./style.css";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -12,10 +12,7 @@ const Header = () => {
   const location = useLocation();
   const { pathname } = location;
   const splitLocation = pathname.split("/");
-
   const dispatchEvent = useDispatch();
-  const [selected, setSelected] = useState("home");
-
   const state = useSelector((state) => {
     return state;
   });
@@ -30,41 +27,69 @@ const Header = () => {
     dispatchEvent(logOut(data));
     navigate(`/`);
   };
-  const change = (type) => {
-    setSelected(type);
-    console.log(type);
-  };
+
   return (
     <>
       <div className="nav">
         {state.signIn.token.length === 0 ? (
           <ul>
-            <li className="lie" id="logo">
+            <li
+              className={splitLocation[1] === "" ? "lie" : "logoUnActive"}
+              id="logo"
+            >
               PERFECTVIEW
-              {/* {selected === "home" && <BsFillCircleFill className="circle" />} */}
             </li>
-            <li onClick={() => change("home")} className="lie">
-              <Link className="link" to="/">
+            <li className="lie">
+              <Link
+                className={splitLocation[1] === "" ? "homeActive" : "unActive"}
+                to="/"
+              >
                 Home
-              </Link>
-            </li>
-            <li onClick={() => change("agents")} className="lie">
-              <Link className="link" to="/agents">
-                Agents
+                {splitLocation[1] === "" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
             <li className="lie">
-              <Link className="link" to="/logIn">
-                log in
+              <Link
+                className={
+                  splitLocation[1] === "agents" ? "active" : "unActive"
+                }
+                to="/agents"
+              >
+                Agents
+                {splitLocation[1] === "agents" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
+              </Link>
+            </li>
+            <li className="lie">
+              <Link
+                className={splitLocation[1] === "logIn" ? "active" : "unActive"}
+                to="/logIn"
+              >
+                Log in
+                {splitLocation[1] === "logIn" ? (
+                  <BsFillCircleFill className="circle" />
+                ) : (
+                  ""
+                )}
               </Link>
             </li>
           </ul>
         ) : (
           <ul>
-            <li className="lie" id="logo">
-              {" "}
+            <li
+              className={splitLocation[1] === "" ? "lie" : "logoUnActive"}
+              id="logo"
+            >
               PERFECTVIEW
             </li>
+
             <li className="lie">
               <Link
                 className={splitLocation[1] === "" ? "homeActive" : "unActive"}
@@ -108,11 +133,7 @@ const Header = () => {
                 )}
               </Link>
             </li>
-            {/* <li className="lie"> 
-              <Link className="link" to="/myAppointments">
-              Appointments
-              </Link>
-            </li> */}
+
             <li className="lie">
               <Link
                 className={
@@ -130,20 +151,20 @@ const Header = () => {
             </li>
             {state.signIn.role === "61c05b910cca090670f00827" && (
               <>
-                <li onClick={() => change("users")} className="lie">
+                <li className="lie">
                   <Link className="link" to="/users">
                     Users
                     {splitLocation[1] === "users" ? (
-                  <BsFillCircleFill className="circle" />
-                ) : (
-                  ""
-                )}
+                      <BsFillCircleFill className="circle" />
+                    ) : (
+                      ""
+                    )}
                   </Link>
                 </li>
               </>
             )}
 
-            <li className="lie">
+            <li className="lie" id="logOutLi">
               <span className="link" onClick={logout}>
                 <button className="logOutBtn">
                   <AiOutlineLogout />

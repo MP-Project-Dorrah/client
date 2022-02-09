@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./style.css";
 import axios from "axios";
-import { Button, Modal, Box, Typography, styled } from "@mui/material";
+import { Button, Modal, Box, Typography } from "@mui/material";
 import { storage } from "../../firebase";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 const style = {
   position: "absolute",
@@ -16,15 +17,11 @@ const style = {
   p: 4,
 };
 
-const Input = styled("input")({
-  display: "none",
-});
-
 function NewProperty(props) {
   const [images, setImages] = useState([]);
   const [urls, setUrls] = useState([]);
+  // eslint-disable-next-line
   const [progress, setProgress] = useState(0);
-
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [city, setCity] = useState("");
@@ -53,6 +50,7 @@ function NewProperty(props) {
   const handleUpload = () => {
     setMessage("Loading...");
     const promises = [];
+    // eslint-disable-next-line
     images.map((image) => {
       const uploadTask = storage.ref(`images/${image.name}`).put(image);
       promises.push(uploadTask);
@@ -117,7 +115,7 @@ function NewProperty(props) {
     }
   };
   return (
-    <div>
+    <div id="newPropertyC">
       <div className="newPostBtn">
         <Button
           onClick={() => {
@@ -137,39 +135,39 @@ function NewProperty(props) {
         <div className="NewPostModel">
           <Box sx={style} className="box">
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              <span className="newPostText"> add a new property </span>
+              <span className="newPostText"> Add a new property </span>
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <label htmlFor="filePicker" className="UploadImgesLable">
                 Choose images
               </label>
-              {images.map((image, i) => (
-                <>
-                  <p className="imagesNames" key={i}>
-                    {" "}
-                    - {image.name}
-                  </p>
-                </>
-              ))}
+
               <input
                 id="filePicker"
-                style={{ visibility: "hidden" }}
+                style={{ visibility: "hidden", width: "0px", height: "0px" }}
                 multiple
                 type={"file"}
                 onChange={handleChange}
               />
-              <button onClick={handleUpload}>Upload</button>
+              <span className="arrowContainer">
+                <IoIosArrowRoundForward className="arrow" />{" "}
+              </span>
+              <button className="uploadBtn" onClick={handleUpload}>
+                Upload
+              </button>
+              <div className="spaceBetween"></div>
 
               {urls.length === images.length ? (
                 <>
                   {urls.map((url, i) => (
-                    <img className="newPostImg" key={i} src={url} />
+                    <img className="newPostImg" key={i} src={url} alt="" />
                   ))}
                 </>
               ) : (
                 message
               )}
               <br />
+
               <input
                 className="newPostInput"
                 onChange={(e) => {
@@ -234,17 +232,22 @@ function NewProperty(props) {
                 placeholder="copy google map link here"
               />
               <br />
-              {name &&
-                price &&
-                city &&
-                bathrooms &&
-                rooms &&
-                location &&
-                describe &&
-                urls.length &&
-                urls.length === images.length && (
-                  <button onClick={postIt}> Post </button>
-                )}
+              <span>
+                {name &&
+                  price &&
+                  city &&
+                  bathrooms &&
+                  rooms &&
+                  location &&
+                  describe &&
+                  urls.length &&
+                  urls.length === images.length && (
+                    <button className="postBtn" onClick={postIt}>
+                      {" "}
+                      Publish{" "}
+                    </button>
+                  )}
+              </span>
             </Typography>
           </Box>
         </div>

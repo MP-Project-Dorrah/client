@@ -10,25 +10,40 @@ import Agents from "./components/agents/agents";
 import InterestList from "./components/interestList/interest";
 import Profile from "./components/profile/profile";
 import Property from "./components/property/property";
-// import Users from "./components/users/users";
+import Users from "./components/users";
+import User from "./components/user";
+import { useSelector } from "react-redux";
+import NotFound from "./components/notFound";
 
 function App() {
+  const state = useSelector((state) => {
+    return state;
+  });
+
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route exact path="/log" element={<Signup />} />
-        <Route exact path="/logIn" element={<Login />} />
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/forgetPassword" element={<Forget />} />
-        <Route exact path="/resetPassword" element={<Reset />} />
         <Route exact path="/agents" element={<Agents />} />
-        <Route exact path="/interestList" element={<InterestList />} />
-        <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/property/:id" element={<Property />} />
-        {/* <Route exact path="/users" element={<Users />} /> */}
-
-        {/* <Route path="*" element={<Notfound />} /> */}
+        {state.signIn.token ? (
+          <>
+            <Route exact path="/interestList" element={<InterestList />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/user/:id" element={<User />} />
+            <Route exact path="/users" element={<Users />} />
+            <Route path="*" element={<NotFound />} />
+          </>
+        ) : (
+          <>
+            <Route exact path="/log" element={<Signup />} />
+            <Route exact path="/logIn" element={<Login />} />
+            <Route exact path="/forgetPassword" element={<Forget />} />
+            <Route exact path="/resetPassword" element={<Reset />} />
+            <Route path="*" element={<NotFound />} />
+          </>
+        )}
       </Routes>
     </div>
   );

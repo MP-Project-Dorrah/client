@@ -3,22 +3,81 @@
   width: 100px;
   margin: 5px;
 }
+
 .UploadImgesLable {
   padding: 5px 10px;
   border: 1px solid black;
+  border-radius: 5px;
 }
 .UploadImgesLable:hover {
   cursor: pointer;
 }
+#newPropertyC {
+  margin-right: 15%;
+}
+.imagesNames {
+  font-size: 13px;
+}
 
-.NewPostModel {
+.box {
   text-align: center;
   align-items: center;
 }
-.NewPostModel button {
-  display: block;
+
+.spaceBetween {
+  height: 1px;
 }
 
-.imagesNames {
-  font-size: 13px;
+.uploadBtn {
+  border-style: none;
+  margin-left: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border: 0.5px solid rgb(0, 0, 0);
+}
+
+.uploadBtn:hover {
+  cursor: pointer;
+}
+.arrow {
+  font-size: 35px;
+  top: -5px;
+  position: absolute;
+}
+.arrowContainer {
+  position: relative;
+}
+
+.NewPostModel input {
+  border-style: none;
+  padding: 5px;
+  border-radius: 3px;
+  border-bottom: 0.5px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.conditionsSpan {
+  display: none;
+}
+
+.postBtn {
+  border-style: none;
+  border-radius: 5px;
+  padding: 7px;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  border: 0.5px solid rgb(255, 255, 255);
+}
+
+.postBtn:hover {
+  cursor: pointer;
+}
+@media all and (max-width: 750px) {
+  #newPropertyC {
+    margin-right: 25%;
+  }
 }

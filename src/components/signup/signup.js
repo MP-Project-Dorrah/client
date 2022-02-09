@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {
+  ToggleButton,
+  ToggleButtonGroup,
+  List,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  Menu,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
 
 const options = ["Qassim", "Riyadh", "Jeddah", "Dhahran", "Jubail"];
 
@@ -46,7 +48,7 @@ const Signup = () => {
       <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
         <CircularProgress color="inherit" />
       </Stack>
-    ); //Progress indicators
+    );
     const users = await axios.post(
       `${process.env.REACT_APP_BASE_URL}/user/create`,
       {
@@ -98,23 +100,32 @@ const Signup = () => {
     <>
       {!isSignUp && (
         <div className="signUpCom">
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="Buyer">
-              {" "}
-              <span></span> Buyer <span></span>
-            </ToggleButton>
-            <ToggleButton value="Seller">
-              <span></span>Seller <span></span>
-            </ToggleButton>
-            <ToggleButton value="Agent">
-              <span></span>Agent<span></span>
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <h2>Sign up</h2>
+          <div>
+            <ToggleButtonGroup
+              className="ToggleButtonGroup"
+              color="primary"
+              value={alignment}
+              exclusive
+              sx={{
+                display: { xs: "flex", md: "flex" },
+                justifyContent: "center",
+                flexDirection: { xs: "column", md: "row" },
+              }}
+              // orientation= "vertical"
+              onChange={handleChange}
+            >
+              <ToggleButton value="Buyer">
+                <span> Buyer </span>
+              </ToggleButton>
+              <ToggleButton value="Seller">
+                <span>Seller </span>
+              </ToggleButton>
+              <ToggleButton value="Agent">
+                <span>Agent</span>
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </div>
           <div>
             <input
               type="email"
@@ -225,7 +236,7 @@ const Signup = () => {
             </>
           )}
           <button
-            className="LogBtn"
+            className="LogBtn2"
             onClick={() => {
               getUser();
             }}

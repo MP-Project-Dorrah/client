@@ -1,23 +1,29 @@
 .describeItem {
   font-family: "Dosis", sans-serif;
-  font-size: 60px;
+  font-size: 55px;
   align-items: center;
   text-align: center;
+  margin: 5% 30%;
+  padding: 3% 0;
+  box-shadow: 0px 0px 28px -1px rgba(154, 172, 182, 0.51);
+  border-radius: 20px;
+  font-family: "Arima Madurai", cursive;
 }
 .Logg {
   display: block;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 1%;
 }
 
 .describeItem input {
   border-style: none;
   padding: 5px;
-  font-size: 30px;
+  font-size: 27px;
+  width: 75%;
   border-radius: 3px;
   border-bottom: 0.5px solid rgb(0, 0, 0);
   color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
+  font-family: "Arima Madurai", cursive;
 }
 .LogBtn {
   margin-top: 1%;
@@ -38,9 +44,13 @@
 }
 
 .goIcon {
-  color: rgba(192, 145, 102, 0.794);
+  color: rgba(21, 194, 237, 0.637);
   font-size: 45px;
 }
+.goIcon:hover {
+  color: rgb(21, 194, 237);
+}
+
 .mesageL {
   font-size: 25px;
   display: flex;
@@ -48,8 +58,9 @@
 }
 
 .forgetPass {
-  margin-top: 20px;
+  margin: 1.5% 0;
   font-size: 25px;
+  color: rgba(73, 73, 73, 0.767);
 }
 
 .forgetPass:hover {
@@ -61,4 +72,29 @@
 
 .linkk {
   color: rgb(0, 0, 0);
+}
+
+@media all and (max-width: 500px) {
+  .describeItem {
+    font-size: 35px;
+  }
+  .describeItem input {
+    font-size: 20px;
+  }
+  .forgetPass {
+    font-size: 18px;
+    margin-top: 5%;
+  }
+  .goIcon {
+    font-size: 40px;
+    margin-top: 15%;
+  }
+  .already {
+    font-size: 20px;
+  }
+}
+@media all and (max-width: 900px) {
+  .describeItem {
+    margin: 10% 10%;
+  }
 }
