@@ -85,7 +85,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  margin-top: 1%;
+  margin-top: 15%;
 }
 .sellerInfo {
   margin-top: 1%;
@@ -94,7 +94,7 @@
   flex-wrap: wrap;
 }
 .sellerInfo > div {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .contact {
   font-size: 17px;
@@ -109,14 +109,14 @@
   color: rgb(155, 37, 37);
   font-size: 24px;
   position: absolute;
-  top: 32px;
+  top: 42px;
   left: 145px;
 }
 .WhatsApp {
   color: green;
   font-size: 20px;
   position: absolute;
-  top: 34px;
+  top: 44px;
   left: 120px;
 }
 .sellerData {
@@ -151,11 +151,11 @@
     font-size: 15px;
   }
   .WhatsApp {
-    top: 60px;
+    top: 70px;
     left: 0px;
   }
   .email {
-    top: 58px;
+    top: 68px;
     left: 25px;
   }
   .contact {
